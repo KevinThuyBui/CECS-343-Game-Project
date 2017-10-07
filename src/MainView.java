@@ -4,17 +4,11 @@ import java.awt.EventQueue;
 import java.io.IOException;
 import java.io.File;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JScrollPane;
-import javax.swing.JLabel;
 import java.awt.image.BufferedImage;
 
 public class MainView extends JFrame {
-
-	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -35,13 +29,13 @@ public class MainView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainView() {
+	private MainView() {
 		
 
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100,100, 1200, 1000);
-		contentPane = new JPanel();
+		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -53,14 +47,16 @@ public class MainView extends JFrame {
 		BufferedImage CSULBMapImage = null;
 		
 		try{
-			CSULBMapImage = ImageIO.read(new File ("c:\\Users\\Milksauce\\CECS-343-Game-Project\\resources\\CSULBMap5_1200x1437.png"));
+			CSULBMapImage = ImageIO.read(new File ("resources/CSULBMap5_1200x1437.png"));
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
 
 
-		CSULBMapIcon = new ImageIcon(CSULBMapImage);
+		if (CSULBMapImage != null) {
+			CSULBMapIcon = new ImageIcon(CSULBMapImage);
+		}
 		javax.swing.JLabel CSULBMapLabel = new javax.swing.JLabel(CSULBMapIcon);
 
 		
