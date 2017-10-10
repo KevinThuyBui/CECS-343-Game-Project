@@ -1,12 +1,9 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import java.io.IOException;
-import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class MainView extends JFrame {
 
@@ -30,8 +27,6 @@ public class MainView extends JFrame {
 	 * Create the frame.
 	 */
 	private MainView() {
-		
-
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100,100, 1200, 1000);
@@ -47,12 +42,11 @@ public class MainView extends JFrame {
 		BufferedImage CSULBMapImage = null;
 		
 		try{
-			CSULBMapImage = ImageIO.read(new File ("resources/CSULBMap5_1200x1437.png"));
+			CSULBMapImage = ImageIO.read(this.getClass().getResource("CSULBMap5_1200x1437.png"));
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-
 
 		if (CSULBMapImage != null) {
 			CSULBMapIcon = new ImageIcon(CSULBMapImage);
