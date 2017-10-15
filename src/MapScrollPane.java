@@ -1,11 +1,27 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class MapScrollPane extends JScrollPane {
-    public MapScrollPane() {
-        //Read and store CSULBMap5_1200x1437.png as JLabel
+class MapScrollPane extends JScrollPane {
+    MapScrollPane() {
+        //Read and store CSULBMap5_1200x1437.png as BufferedImage
+        BufferedImage CSULBMapImage = readMapFromFile();
+        //If image is stored in BufferedImage create a JLabel to be stored in MapScrollPane View
+        if (CSULBMapImage != null) {
+            JLabel CSULBMapLabel = createJLabel(CSULBMapImage);
+            setViewportView(CSULBMapLabel);
+        }
+
+        super.setSize(1000, 1000);
+        //Increase scroll speed
+        super.getVerticalScrollBar().setUnitIncrement(20);
+
+    }
+
+    private BufferedImage readMapFromFile()
+    {
         BufferedImage CSULBMapImage = null;
 
         try{
@@ -15,16 +31,12 @@ public class MapScrollPane extends JScrollPane {
             e.printStackTrace();
         }
 
-        if (CSULBMapImage != null) {
-            ImageIcon CSULBMapIcon = new ImageIcon(CSULBMapImage);
-            javax.swing.JLabel CSULBMapLabel = new javax.swing.JLabel(CSULBMapIcon);
-            setViewportView(CSULBMapLabel);
-
-        }
-
-        super.setSize(1000, 1000);
-        //Increase scroll speed
-        super.getVerticalScrollBar().setUnitIncrement(20);
-
+        return CSULBMapImage;
     }
+
+    private JLabel createJLabel(BufferedImage image)
+    {
+        return new JLabel( new ImageIcon(image));
+    }
+
 }
