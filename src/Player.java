@@ -14,10 +14,6 @@
 */
 
 import java.awt.*;
-import java.util.EnumSet;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Player {
 
@@ -30,10 +26,12 @@ public class Player {
     public int learning;
     public int quality;
 
-    public Player()
-    {
-        currentRoom = new Room();
-        //set attributes later
+    public Player(Room currentRoom, int integrety, int craft, int learning, int quality) {
+        this.currentRoom = currentRoom;
+        this.integrety = integrety;
+        this.craft = craft;
+        this.learning = learning;
+        this.quality = quality;
     }
 
     //set player to room attributes
@@ -42,48 +40,41 @@ public class Player {
         return currentRoom.getDrawPosition();
     }
 
-
-
-
-
-	/*String ();
-
-    int getLearning();
-    int getCraft();
-    int getIntegrity();
-    int getQuality();
-
-    void offsetLearning(int value);
-    void offsetCraft(int value);
-    void offsetIntegrity(int value);
-    void offsetQuality(int values);
-
-    Room getRoom();
-
-    void setRoom(Room room);*/
-
-}
-
-/*public interface Player {
-
-    public static Player newPlayer(String name, int a, int b, int c) {
-        //todo
-        return null;
+    public int getIntegrety() {
+        return integrety;
     }
 
-    String getNAme();
+    public int getCraft() {
+        return craft;
+    }
 
-    int getLearning();
-    int getCraft();
-    int getIntegrity();
-    int getQuality();
+    public int getLearning() {
+        return learning;
+    }
 
-    void offsetLearning(int value);
-    void offsetCraft(int value);
-    void offsetIntegrity(int value);
-    void offsetQuality(int values);
+    public int getQuality() {
+        return quality;
+    }
 
-    Room getRoom();
+    public void offsetLearning(int value) {
+        learning += value;
+    }
+    public void offsetCraft(int value) {
+        craft += value;
+    }
+    public void offsetIntegrity(int value) {
+        integrety += value;
+    }
+    public void offsetQuality(int value) {
+        quality += value;
+    }
 
-    void setRoom(Room room);
-}*/
+    public Room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(Room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
+}
+
