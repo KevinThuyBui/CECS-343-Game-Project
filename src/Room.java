@@ -48,10 +48,10 @@ enum Room {
         LACTATION_LOUNGE.adjacentRooms = new Room[]{SOUTH_HALL};
     }
 
-    public final String name;
-    public Room[] adjacentRooms;
-    public final int xDrawPosition;
-    public final int yDrawPosition;
+    private final String name;
+    private Room[] adjacentRooms;
+    private final int xDrawPosition;
+    private final int yDrawPosition;
 
     Room(String name, int xDrawPosition, int yDrawPosition) {
         this.name = name;
@@ -62,13 +62,11 @@ enum Room {
     /**
      * @return the Point at which the Player token should be dreawn
      */
-    public Point getDrawPosition()
-    {
+    public Point getDrawPosition() {
         return new Point(xDrawPosition, yDrawPosition);
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 

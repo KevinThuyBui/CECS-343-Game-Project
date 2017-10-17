@@ -13,8 +13,6 @@
   limitations under the License.
 */
 
-import javafx.scene.control.ComboBox;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -50,8 +48,6 @@ public class ControlPanel extends JPanel {
         private ControlPanel panel;
         private JList<Room> list;
 
-        private ComboBox<Room> roomComboBox;
-
         public MovePanel(ControlPanel panel) {
             this.panel = panel;
             setLayout(new GridLayout(2, 1, 10, 10));
@@ -66,7 +62,7 @@ public class ControlPanel extends JPanel {
         }
 
         private void onMove(ActionEvent actionEvent) {
-            final Room selectedRoom = roomComboBox.getSelectionModel().getSelectedItem();
+            final Room selectedRoom = list.getSelectedValue();
             if (selectedRoom != null) panel.notifyMove(selectedRoom);
         }
 
