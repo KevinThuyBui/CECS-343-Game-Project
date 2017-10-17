@@ -13,7 +13,58 @@
   limitations under the License.
 */
 
-public interface Player {
+import java.awt.*;
+import java.util.EnumSet;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Player {
+
+    private Room currentRoom;
+
+    //private int numOfAdjacentRooms;
+
+    public int integrety;
+    public int craft;
+    public int learning;
+    public int quality;
+
+    public Player()
+    {
+        currentRoom = new Room();
+        //set attributes later
+    }
+
+    //set player to room attributes
+    public Point getPoint()
+    {
+        return currentRoom.getDrawPosition();
+    }
+
+
+
+
+
+	/*String ();
+
+    int getLearning();
+    int getCraft();
+    int getIntegrity();
+    int getQuality();
+
+    void offsetLearning(int value);
+    void offsetCraft(int value);
+    void offsetIntegrity(int value);
+    void offsetQuality(int values);
+
+    Room getRoom();
+
+    void setRoom(Room room);*/
+
+}
+
+/*public interface Player {
 
     public static Player newPlayer(String name, int a, int b, int c) {
         //todo
@@ -35,4 +86,4 @@ public interface Player {
     Room getRoom();
 
     void setRoom(Room room);
-}
+}*/

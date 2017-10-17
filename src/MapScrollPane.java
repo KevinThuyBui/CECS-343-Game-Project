@@ -5,6 +5,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 class MapScrollPane extends JScrollPane {
+    public static JLabel playerToken1, playerToken2, playerToken3;
+    public static final int PLAYER2OFFSET = 15;
+    public static final int PLAYER3OFFSET = 30;
+
     MapScrollPane() {
         //Read and store CSULBMap5_1200x1437.png as BufferedImage
         BufferedImage CSULBMapImage = readMapFromFile();
@@ -12,6 +16,28 @@ class MapScrollPane extends JScrollPane {
         if (CSULBMapImage != null) {
             JLabel CSULBMapLabel = createJLabel(CSULBMapImage);
             setViewportView(CSULBMapLabel);
+
+            playerToken1 = new JLabel();
+            playerToken1.setLocation(Rooms.ECS_308.xDrawPosition, Rooms.ECS_308.yDrawPosition);
+            playerToken2 = new JLabel();
+            playerToken2.setLocation(Rooms.ECS_308.xDrawPosition, Rooms.ECS_308.yDrawPosition + PLAYER2OFFSET);
+            playerToken3 = new JLabel();
+            playerToken3.setLocation(Rooms.ECS_308.xDrawPosition, Rooms.ECS_308.yDrawPosition + PLAYER3OFFSET);
+
+            playerToken1.setText("Player1");
+            playerToken2.setText("Player2");
+            playerToken3.setText("Player3");
+
+            playerToken1.setSize(20, 20);
+
+            CSULBMapLabel.add(playerToken1);
+            CSULBMapLabel.add(playerToken2);
+            CSULBMapLabel.add(playerToken3);
+
+            CSULBMapLabel.validate();
+
+
+
         }
 
         super.setSize(1000, 1000);
@@ -38,5 +64,9 @@ class MapScrollPane extends JScrollPane {
     {
         return new JLabel( new ImageIcon(image));
     }
+
+    //setTokns at the start of the game
+
+
 
 }
