@@ -13,8 +13,8 @@
   limitations under the License.
 */
 
-public abstract class RoomMoveListener {
+public interface RoomMoveListener {
 
-    public abstract void onMove(Room room);
+    void onMove(Room room);
 
 }
