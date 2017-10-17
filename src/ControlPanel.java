@@ -18,13 +18,12 @@ import javafx.scene.control.ComboBox;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.function.Consumer;
 
 public class ControlPanel extends JPanel {
 
     private final MovePanel movePanel;
     private final PlayerPanel playerPanel;
-    private Consumer<Room> onMove;
+    private RoomMoveListener listener;
 
     public ControlPanel() {
         setLayout(new FlowLayout());
@@ -33,12 +32,12 @@ public class ControlPanel extends JPanel {
         playerPanel = new PlayerPanel();
     }
 
-    public void addMoveListener(Consumer<Room> onMove) {
-        this.onMove = onMove;
+    public void addMoveListener(RoomMoveListener onMove) {
+        this.listener = onMove;
     }
 
     private void notifyMove(Room selectedRoom) {
-        onMove.accept(selectedRoom);
+        listener.onMove(selectedRoom);
     }
 
     public void setRooms(Room[] rooms) {
