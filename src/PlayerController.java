@@ -13,9 +13,9 @@ class PlayerController {
 
     PlayerController()
     {
-        player1 = new Player();
-        player2 = new Player();
-        player3 = new Player();
+        player1 = new Player(null, 0, 0, 0, 0);
+        player2 = new Player(null, 0, 0, 0, 0);
+        player3 = new Player(null, 0, 0, 0, 0);
     }
     //This function to be called by the Control Panel's move button
     void updatePlayerPositions()
