@@ -21,7 +21,7 @@ enum Room {
     SOUTH_HALL("South Hall", 595, 825),
     ROOM_OF_RETIREMENT("Room of Retirement", 130, 970),
     ELEVATORS("Elevators", 430, 970),
-    ECS_308("ECS_308", 595, 970),
+    ECS_308("ECS 308", 595, 970),
     LACTATION_LOUNGE("Lactation Lounge", 880, 960);
 
     static {
