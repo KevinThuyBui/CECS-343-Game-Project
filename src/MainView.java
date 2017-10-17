@@ -40,6 +40,9 @@ public class MainView extends JFrame {
 	
 		//Create a panel to hold the player information and interactions below
 		final ControlPanel controlPanel = new ControlPanel();
+
+		//placeHolder todo
+		controlPanel.setRooms(Room.NORTH_HALL.getAdjacentRooms());
 		getContentPane().add(controlPanel, BorderLayout.SOUTH);
 	}
 
