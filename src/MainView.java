@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class MainView extends JFrame {
-
 	/**
 	 * Launch the application.
 	 */
@@ -27,7 +26,7 @@ public class MainView extends JFrame {
 	 * Create the frame.
 	 */
 	private MainView() {
-
+		//Create the Jpanel for the entire application
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100,100, 1244, 1000);
 		JPanel contentPane = new JPanel();
@@ -35,7 +34,11 @@ public class MainView extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		MapScrollPane scrollPane = new MapScrollPane();
+		//Create a PlayerController to store player positions
+		PlayerController playerState = new PlayerController();
+
+		//Create a MapScrollPane for game map
+		MapScrollPane scrollPane = new MapScrollPane(playerState);
 		getContentPane().add(scrollPane, BorderLayout.CENTER);	
 	
 		//Create a panel to hold the player information and interactions below
