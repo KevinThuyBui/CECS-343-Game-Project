@@ -1,9 +1,6 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class MainView extends JFrame {
 	/**
@@ -42,9 +39,8 @@ public class MainView extends JFrame {
 		getContentPane().add(scrollPane, BorderLayout.CENTER);	
 	
 		//Create a panel to hold the player information and interactions below
-		JPanel panel = new JPanel();
-		getContentPane().add(panel, BorderLayout.SOUTH);
-		
+		final ControlPanel controlPanel = new ControlPanel();
+		getContentPane().add(controlPanel, BorderLayout.SOUTH);
 	}
 
 }

@@ -13,19 +13,69 @@
   limitations under the License.
 */
 
-import javax.swing.plaf.basic.BasicOptionPaneUI;
-import java.util.List;
+import javafx.scene.control.ComboBox;
 
-public interface ControlPanel {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.function.Consumer;
 
-    public static <T extends ControlPanel, JPanel> T newControlPanel() {
-        //todo
-        return null;
+public class ControlPanel extends JPanel {
+
+    private final MovePanel movePanel;
+    private final PlayerPanel playerPanel;
+    private Consumer<Room> onMove;
+
+    public ControlPanel() {
+        setLayout(new FlowLayout());
+        movePanel = new MovePanel(this);
+        add(movePanel);
+        playerPanel = new PlayerPanel();
     }
 
-    void display(String text);
+    public void addMoveListener(Consumer<Room> onMove) {
+        this.onMove = onMove;
+    }
 
-    void addMoveListener(BasicOptionPaneUI.ButtonActionListener listener);
+    private void notifyMove(Room selectedRoom) {
+        onMove.accept(selectedRoom);
+    }
 
-    void displayAvailableRooms(List<Room> rooms);
+    public void setRooms(Room[] rooms) {
+        movePanel.setRooms(rooms);
+    }
+
+
+    public static class MovePanel extends JPanel {
+
+        private ControlPanel panel;
+        private JList<Room> list;
+
+        private ComboBox<Room> roomComboBox;
+
+        public MovePanel(ControlPanel panel) {
+            this.panel = panel;
+            setLayout(new GridLayout(2, 1, 10, 10));
+            list = new JList<>();
+            list.setDragEnabled(false);
+            list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            list.setName("Rooms");
+            final JButton move = new JButton("Move");
+            move.addActionListener(this::onMove);
+            add(move);
+            add(list);
+        }
+
+        private void onMove(ActionEvent actionEvent) {
+            final Room selectedRoom = roomComboBox.getSelectionModel().getSelectedItem();
+            if (selectedRoom != null) panel.notifyMove(selectedRoom);
+        }
+
+        public void setRooms(Room[] rooms) {
+            list.setListData(rooms);
+        }
+    }
+
+    public static class PlayerPanel {
+    }
 }
