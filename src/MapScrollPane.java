@@ -77,7 +77,4 @@ class MapScrollPane extends JScrollPane {
         playerToken2.setForeground(Color.red);
         playerToken3.setForeground(Color.red);
     }
-
-
-
 }

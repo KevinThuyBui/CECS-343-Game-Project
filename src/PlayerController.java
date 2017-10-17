@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 class PlayerController {
     private static Player player1;
@@ -17,7 +18,7 @@ class PlayerController {
         player2 = new Player(Room.ECS_302, 0, 0, 0, 0);
         player3 = new Player(Room.ECS_302, 0, 0, 0, 0);
     }
-    //This function to be called by the Control Panel's move button
+    //This function to be called by the Control Panel's move buttonh
     void updatePlayerPositions()
     {
         playerToken1.setLocation(player1.getPoint());
@@ -36,5 +37,13 @@ class PlayerController {
     {
         return new Point(playerPoint.x , playerPoint.y +offSet);
 
+    }
+
+    //added randomly selects a position for player2 and player3
+    public void setARandomRoom(Player player)
+    {
+        Random randomRooms = new Random();
+        int aRandomRoom = randomRooms.nextInt(player.getNumOfAdjecentRooms()+1);
+        player.setToAnAjacentRoom(aRandomRoom);
     }
 }
