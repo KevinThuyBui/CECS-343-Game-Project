@@ -4,7 +4,7 @@ import main.impl.DrawablePlayer;
 import main.impl.PlayerImpl;
 
 import javax.swing.*;
-import java.util.InputMismatchException;
+import java.util.*;
 import java.util.concurrent.*;
 
 class PlayerController {
@@ -22,10 +22,10 @@ class PlayerController {
 
     public PlayerController(ControlPanel controlPanel) {
         this.controlPanel = controlPanel;
+
         players = new Player[PLAYER_COUNT];
-        players[0] = new PlayerImpl("Jack", Room.ECS_302, 0, 0, 0, 0);
-        players[1] = new PlayerImpl("Lemon", Room.ECS_302, 0, 0, 0, 0);
-        players[2] = new PlayerImpl("Romulus", Room.ECS_302, 0, 0, 0, 0);
+        randomizePlayers(players);
+
     }
 
     public void setLabels(JLabel[] labels) {
@@ -53,6 +53,26 @@ class PlayerController {
             beginPlayerTurn();
         }
     }
+
+    private void randomizePlayers(Player[] players)
+    {
+        ArrayList<Integer> randomPlayerPositionList = createRandomList();
+
+        players[randomPlayerPositionList.get(0)] = new PlayerImpl("Jack", Room.ECS_308, 0, 0, 0, 0);
+        players[randomPlayerPositionList.get(1)] = new PlayerImpl("Lemon", Room.ECS_308, 0, 0, 0, 0);
+        players[randomPlayerPositionList.get(2)] = new PlayerImpl("Romulus", Room.ECS_308, 0, 0, 0, 0);
+    }
+
+    private ArrayList<Integer> createRandomList()
+    {
+        ArrayList<Integer> randomPlayerPositionList = new ArrayList<>();
+        randomPlayerPositionList.add(0);
+        randomPlayerPositionList.add(1);
+        randomPlayerPositionList.add(2);
+        Collections.shuffle(randomPlayerPositionList);
+        return randomPlayerPositionList;
+    }
+
 
     private void beginComputerTurn() {
         controlPanel.setMoveEnabled(false);
