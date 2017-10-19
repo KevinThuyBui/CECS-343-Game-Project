@@ -1,6 +1,8 @@
+package main;
+
 import java.awt.*;
 
-enum Room {
+public enum Room {
 
     GEORGE_ALLEN_FIELD("George Allen Field", 10, 80),
     JAPANESE_GARDEN("Japanese Garden", 310, 20),
@@ -60,7 +62,7 @@ enum Room {
     }
 
     /**
-     * @return the Point at which the Player token should be dreawn
+     * @return the Point at which the main.Player token should be dreawn
      */
     public Point getDrawPosition() {
         return new Point(xDrawPosition, yDrawPosition);
