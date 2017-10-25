@@ -24,10 +24,10 @@ public class PlayerImpl implements Player {
 
     private Room currentRoom;
 
-    public int integrety;
-    public int craft;
-    public int learning;
-    public int quality;
+    private int integrety;
+    private int craft;
+    private int learning;
+    private int quality;
 
     public PlayerImpl(String name, Room currentRoom, int integrety, int craft, int learning, int quality) {
         this.name = name;
