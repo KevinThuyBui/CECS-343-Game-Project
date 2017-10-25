@@ -62,7 +62,7 @@ public class ControlPanel extends JPanel {
             jPanel.add(move);
             add(jPanel);
             add(Box.createVerticalGlue());
-            list.setPreferredSize(new Dimension(150, 115));
+            list.setPreferredSize(new Dimension(150, 132));
             add(list);
         }
 
@@ -72,7 +72,6 @@ public class ControlPanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(e.getActionCommand());
             final Room selectedRoom = list.getSelectedValue();
             if (selectedRoom != null) panel.notifyMove(selectedRoom);
         }
