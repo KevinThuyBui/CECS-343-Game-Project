@@ -4,8 +4,13 @@ import main.impl.DrawablePlayer;
 import main.impl.PlayerImpl;
 
 import javax.swing.*;
-import java.util.*;
-import java.util.concurrent.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 class PlayerController {
     //Offset required to prevent collision of tokens
@@ -16,9 +21,7 @@ class PlayerController {
     private final Player[] players;
 
     private int currentPlayer = 0;
-    private ControlPanel controlPanel;
-
-    private ScheduledExecutorService service;
+    private final ControlPanel controlPanel;
 
     public PlayerController(ControlPanel controlPanel) {
         this.controlPanel = controlPanel;
@@ -56,36 +59,27 @@ class PlayerController {
 
     private void randomizePlayers(Player[] players)
     {
-        ArrayList<Integer> randomPlayerPositionList = createRandomList();
-
-        players[randomPlayerPositionList.get(0)] = new PlayerImpl("Jack", Room.ECS_308, 0, 0, 0, 0);
-        players[randomPlayerPositionList.get(1)] = new PlayerImpl("Lemon", Room.ECS_308, 0, 0, 0, 0);
-        players[randomPlayerPositionList.get(2)] = new PlayerImpl("Romulus", Room.ECS_308, 0, 0, 0, 0);
-    }
-
-    private ArrayList<Integer> createRandomList()
-    {
-        ArrayList<Integer> randomPlayerPositionList = new ArrayList<>();
-        randomPlayerPositionList.add(0);
-        randomPlayerPositionList.add(1);
-        randomPlayerPositionList.add(2);
-        Collections.shuffle(randomPlayerPositionList);
-        return randomPlayerPositionList;
+        final List<Integer> randomList = Arrays.asList(0, 1, 2);
+        Collections.shuffle(randomList);
+        players[randomList.get(0)] = new PlayerImpl("Jack", Room.ECS_308, 0, 0, 0, 0);
+        players[randomList.get(1)] = new PlayerImpl("Lemon", Room.ECS_308, 0, 0, 0, 0);
+        players[randomList.get(2)] = new PlayerImpl("Romulus", Room.ECS_308, 0, 0, 0, 0);
     }
 
 
     private void beginComputerTurn() {
         controlPanel.setMoveEnabled(false);
         controlPanel.setRooms(new Room[0]);
-        service = Executors.newSingleThreadScheduledExecutor();
-        service.schedule(new Runnable() {
+        final Timer timer = new Timer(500, new ActionListener() {
             @Override
-            public void run() {
+            public void actionPerformed(ActionEvent e) {
                 Room[] adjacentRooms = getCurrentPlayer().getRoom().getAdjacentRooms();
                 getCurrentPlayer().setRoom(adjacentRooms[ThreadLocalRandom.current().nextInt(adjacentRooms.length)]);
                 nextTurn();
             }
-        }, 1, TimeUnit.SECONDS);
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 
 

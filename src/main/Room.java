@@ -43,7 +43,7 @@ public enum Room {
         EAT_CLUB.adjacentRooms = new Room[]{SOUTH_HALL};
         CECS_CONFERENCE_ROOM.adjacentRooms = new Room[]{SOUTH_HALL};
         NORTH_HALL.adjacentRooms = new Room[]{WEST_WALKWAY, COMPUTER_LAB, ECS_302, ELEVATORS, ROOM_OF_RETIREMENT};
-        SOUTH_HALL.adjacentRooms = new Room[]{ECS_302, EAT_CLUB, CECS_CONFERENCE_ROOM, LACTATION_LOUNGE, ECS_308, NORTH_HALL};
+        SOUTH_HALL.adjacentRooms = new Room[]{ECS_302, EAT_CLUB, CECS_CONFERENCE_ROOM, LACTATION_LOUNGE, ECS_308, NORTH_HALL, EAST_WALKWAY};
         ROOM_OF_RETIREMENT.adjacentRooms = new Room[]{NORTH_HALL};
         ELEVATORS.adjacentRooms = new Room[]{NORTH_HALL, LA_5};
         ECS_308.adjacentRooms = new Room[]{SOUTH_HALL};
