@@ -70,6 +70,8 @@ class MapScrollPane extends JScrollPane {
             mapLabel.add(playerLabel);
             jLabels[i] = playerLabel;
         }
+        jLabels[0].setBorder(BorderFactory.createLineBorder(Color.GREEN.darker(), 1));
+        jLabels[0].setBackground(new Color(0, 30, 0, 150));
 
         playerState.setLabels(jLabels);
     }
