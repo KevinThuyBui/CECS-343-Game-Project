@@ -5,6 +5,8 @@ import main.Room;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class DrawablePlayer implements Player {
     private final Player player;
@@ -76,7 +78,24 @@ public class DrawablePlayer implements Player {
     @Override
     public void setRoom(Room currentRoom) {
         player.setRoom(currentRoom);
-        Point drawPosition = currentRoom.getDrawPosition();
-        label.setLocation(drawPosition.x, drawPosition.y + labelOffset);
+        final Point begin = label.getLocation();
+        final Point end = currentRoom.getDrawPosition();
+        final double dx = (end.getX() - begin.getX()) / 100;
+        final double dy = (end.getY() + labelOffset - begin.getY()) / 100;
+
+        new Timer(10, new ActionListener() {
+            double x = begin.x;
+            double y = begin.y;
+            int counter = 0;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                label.setLocation((int) (x += dx), (int) (y += dy));
+                counter++;
+                if (counter == 100) {
+                    ((Timer) e.getSource()).stop();
+                }
+            }
+        }).start();
     }
 }
