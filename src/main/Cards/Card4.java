@@ -2,13 +2,12 @@ package main.Cards;
 
 import main.Player;
 
-public class card2 extends Card {
+public class Card4 extends Card {
 
-
-    public card2(){
-        cardName = "Lunch at Bratwurst Hall";
-        location = "Bratwurst Hall";
-        reward = "1 Craft Chip";
+    public Card4(){
+        cardName = "Professor Murgolo's CECS 174 Class";
+        location = "ECS 302";
+        reward = "1 Learning Chip";
     }
 
     @Override
@@ -18,11 +17,12 @@ public class card2 extends Card {
 
     @Override
     public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom().getName().equals(location)) {           //played at Bratwurst Hall
-            thisPlayer.offsetCraft(1);     //get 1 Craft Chip
+        if (thisPlayer.getRoom().getName().equals(location)) {
+            thisPlayer.offsetLearning( 1);                                  //get 1 learning Chip
             outcome = thisPlayer.getName() + " was awarded " + reward;
         }
-        else{
+        else
+        {
             outcome = thisPlayer.getName() + " was unabled to play: " + cardName;
         }
     }

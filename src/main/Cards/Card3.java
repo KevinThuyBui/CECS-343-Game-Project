@@ -2,12 +2,12 @@ package main.Cards;
 
 import main.Player;
 
-public class card7 extends Card {
+public class Card3 extends Card {
 
-    public card7(){
-        cardName = "Finding the Lab";
-        location = "Elevators";
-        reward = "1 Integrity Chip";
+    public Card3(){
+        cardName = "Research Compilers";
+        location = "Library";
+        reward = "1 Learning Chip";
     }
 
     @Override
@@ -18,7 +18,7 @@ public class card7 extends Card {
     @Override
     public void play(Player thisPlayer) {
         if (thisPlayer.getRoom().getName().equals(location)) {
-            thisPlayer.offsetIntegrity( 1);                                  //get 1 Integrity chip
+            thisPlayer.offsetLearning( 1);                                  //get 1 learning Chip
             outcome = thisPlayer.getName() + " was awarded " + reward;
         }
         else

@@ -2,9 +2,9 @@ package main.Cards;
 
 import main.Player;
 
-public class card0 extends Card {
+public class Card0 extends Card {
 
-    public card0(){
+    public Card0(){
         cardName = "CECS 105";
         location = "CECS 302";
         location1 = "CECS 308";

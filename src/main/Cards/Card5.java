@@ -2,12 +2,12 @@ package main.Cards;
 
 import main.Player;
 
-public class card4 extends Card {
+public class Card5 extends Card {
 
-    public card4(){
-        cardName = "Professor Murgolo's CECS 174 Class";
-        location = "ECS 302";
-        reward = "1 Learning Chip";
+    public Card5(){
+        cardName = "CECS 100";
+        location = "ECS 308";
+        reward = "1 Craft Token";
     }
 
     @Override
@@ -18,7 +18,7 @@ public class card4 extends Card {
     @Override
     public void play(Player thisPlayer) {
         if (thisPlayer.getRoom().getName().equals(location)) {
-            thisPlayer.offsetLearning( 1);                                  //get 1 learning Chip
+            thisPlayer.offsetCraft( 1);                                  //get 1 craft token
             outcome = thisPlayer.getName() + " was awarded " + reward;
         }
         else

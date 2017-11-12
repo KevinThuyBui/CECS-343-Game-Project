@@ -2,11 +2,11 @@ package main.Cards;
 
 import main.Player;
 
-public class card6 extends Card {
+public class Card7 extends Card {
 
-    public card6(){
-        cardName = "Exercising Mind and Body";
-        location = "Student Recreation";
+    public Card7(){
+        cardName = "Finding the Lab";
+        location = "Elevators";
         reward = "1 Integrity Chip";
     }
 

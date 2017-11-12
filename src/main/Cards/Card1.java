@@ -3,9 +3,9 @@ package main.Cards;
 
 import main.Player;
 
-public class card1 extends Card {
+public class Card1 extends Card {
 
-    public card1(){
+    public Card1(){
         cardName = "Math 122";
         location = "Library";
     }

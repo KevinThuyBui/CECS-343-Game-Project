@@ -2,12 +2,12 @@ package main.Cards;
 
 import main.Player;
 
-public class card5 extends Card {
+public class Card6 extends Card {
 
-    public card5(){
-        cardName = "CECS 100";
-        location = "ECS 308";
-        reward = "1 Craft Token";
+    public Card6(){
+        cardName = "Exercising Mind and Body";
+        location = "Student Recreation";
+        reward = "1 Integrity Chip";
     }
 
     @Override
@@ -18,7 +18,7 @@ public class card5 extends Card {
     @Override
     public void play(Player thisPlayer) {
         if (thisPlayer.getRoom().getName().equals(location)) {
-            thisPlayer.offsetCraft( 1);                                  //get 1 craft token
+            thisPlayer.offsetIntegrity( 1);                                  //get 1 Integrity chip
             outcome = thisPlayer.getName() + " was awarded " + reward;
         }
         else
