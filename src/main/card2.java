@@ -1,10 +1,16 @@
 package main;
 
 public class card2 extends Card {
-    private static String cardName = "Lunch at Bratwurst Hall";
-    private static String location = "Bratwurst Hall";
-    private static String reward = "1 Craft Chip";
+    private String cardName;
+    private String location;
+    private String reward;
     private String outcome;
+
+    public card2(){
+        cardName = "Lunch at Bratwurst Hall";
+        location = "Bratwurst Hall";
+        reward = "1 Craft Chip";
+    }
 
     @Override
     public String getCardName() {

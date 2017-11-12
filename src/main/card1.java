@@ -3,10 +3,15 @@ package main;
 
 public class card1 extends Card {
 
-    private static String cardName = "Math122";
-    private static String location = "Library";
+    private String cardName;
+    private String location;
     private String reward; // "1 Learning Chip or 1 Integrity Chip"
     private String outcome;
+
+    public card1(){
+        cardName = "Math122";
+        location = "Library";
+    }
 
     @Override
     public String getCardName() {

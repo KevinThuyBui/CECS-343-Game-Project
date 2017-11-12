@@ -2,10 +2,10 @@ package main;
 
 public class card0 extends Card {
 
-    private static String cardName;
-    private static String location0; //location where card is allowed to play
-    private static String location1;
-    private static String reward;
+    private String cardName;
+    private String location0; //location where card is allowed to play
+    private String location1;
+    private String reward;
     private String outcome;
 
 
