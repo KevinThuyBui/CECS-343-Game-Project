@@ -9,7 +9,7 @@ public class card1 extends Card {
     private String outcome;
 
     public card1(){
-        cardName = "Math122";
+        cardName = "Math 122";
         location = "Library";
     }
 

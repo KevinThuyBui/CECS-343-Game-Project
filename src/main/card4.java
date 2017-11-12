@@ -1,18 +1,15 @@
 package main;
 
-public class card0 extends Card {
+public class card4 extends Card {
 
     private String cardName;
-    private String location0; //location where card is allowed to play
-    private String location1;
+    private String location;
     private String reward;
     private String outcome;
 
-
-    public card0(){
-        cardName = "CECS 105";
-        location0 = "CECS 302";
-        location1 = "CECS 308";
+    public card4(){
+        cardName = "Professor Murgolo's CECS 174 Class";
+        location = "ECS 302";
         reward = "1 Learning Chip";
     }
 
@@ -23,7 +20,7 @@ public class card0 extends Card {
 
     @Override
     public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom().getName().equals(location0) | thisPlayer.getRoom().getName().equals(location1)) {
+        if (thisPlayer.getRoom().getName().equals(location)) {
             thisPlayer.offsetLearning( 1);                                  //get 1 learning Chip
             outcome = thisPlayer.getName() + " was awarded " + reward;
         }
