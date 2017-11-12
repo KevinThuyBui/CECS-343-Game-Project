@@ -11,11 +11,6 @@ public class Card4 extends Card {
     }
 
     @Override
-    public String getCardName() {
-        return cardName;
-    }
-
-    @Override
     public void play(Player thisPlayer) {
         if (thisPlayer.getRoom().getName().equals(location)) {
             thisPlayer.offsetLearning( 1);                                  //get 1 learning Chip

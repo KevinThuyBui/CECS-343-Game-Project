@@ -11,11 +11,6 @@ public class Card1 extends Card {
     }
 
     @Override
-    public String getCardName() {
-        return cardName;
-    }
-
-    @Override
     public void play(Player thisPlayer)
     {
         if(thisPlayer.getRoom().getName().equals(location)){       //played in the Library

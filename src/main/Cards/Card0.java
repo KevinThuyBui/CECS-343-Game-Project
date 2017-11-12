@@ -11,10 +11,6 @@ public class Card0 extends Card {
         reward = "1 Learning Chip";
     }
 
-    @Override
-    public String getCardName() {
-        return cardName;
-    }
 
     @Override
     public void play(Player thisPlayer) {
