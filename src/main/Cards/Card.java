@@ -21,4 +21,14 @@ public abstract class Card {
     }
 
     abstract void play(Player thisPlayer);
+
+    public String failedOutcomeString(String playerName)
+    {
+        return playerName + " failed to play " + cardName;
+    }
+
+    public String successfulOutcomeString(String playerName)
+    {
+        return playerName + " was awarded " + reward + " for playing " + cardName;
+    }
 }

@@ -1,5 +1,7 @@
 package main;
 
+import main.Cards.Card;
+
 import java.awt.*;
 
 public interface Player {
@@ -27,4 +29,8 @@ public interface Player {
     Room getRoom();
 
     void setRoom(Room currentRoom);
+
+    void discardCard(Card display);
+
+    void draw();
 }

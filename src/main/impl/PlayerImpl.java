@@ -14,6 +14,7 @@ package main.impl;/*    Copyright 2017 Ton Ly
 */
 
 import main.Cards.Card;
+import main.Cards.Decks;
 import main.Player;
 import main.Room;
 
@@ -101,6 +102,15 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    public void discardCard(Card display) {
+        if (userHand.contains(display))
+        {
+            userHand.remove(display);
+            Decks.getInstance().addToDiscard(display);
+        }
+    }
+
+    @Override
     public String toString() {
         return String.format("%6s %6d %6d %6d %6d %s", name, integrety, craft, learning, quality, currentRoom);
     }
@@ -109,8 +119,8 @@ public class PlayerImpl implements Player {
         return userHand;
     }
 
-    public void setUserHand(ArrayList<Card> userHand) {
-        this.userHand = userHand;
+    public void draw() {
+        this.userHand.add(Decks.getInstance().drawCard());
     }
 }
 

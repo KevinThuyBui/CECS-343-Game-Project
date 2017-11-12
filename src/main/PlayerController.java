@@ -1,15 +1,16 @@
 package main;
 
+import main.Cards.Card;
+import main.Cards.Card39;
+import main.Cards.Decks;
 import main.impl.DrawablePlayer;
 import main.impl.PlayerImpl;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.InputMismatchException;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 class PlayerController {
@@ -19,12 +20,15 @@ class PlayerController {
 
 
     private final Player[] players;
+    private static Decks decks;
 
     private int currentPlayer = 0;
     private final ControlPanel controlPanel;
 
     public PlayerController(ControlPanel controlPanel) {
         this.controlPanel = controlPanel;
+
+        decks = Decks.getInstance();
 
         players = new Player[PLAYER_COUNT];
         randomizePlayers(players);
@@ -64,6 +68,15 @@ class PlayerController {
         players[randomList.get(0)] = new PlayerImpl("Jack", Room.ECS_308, 0, 0, 0, 0);
         players[randomList.get(1)] = new PlayerImpl("Lemon", Room.ECS_308, 0, 0, 0, 0);
         players[randomList.get(2)] = new PlayerImpl("Romulus", Room.ECS_308, 0, 0, 0, 0);
+
+        for (Player player : players)
+        {
+            initialDraw(player);
+        }
+    }
+
+    private void initialDraw(Player player) {
+        player.draw();
     }
 
 

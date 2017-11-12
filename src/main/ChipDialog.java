@@ -32,15 +32,13 @@ public class ChipDialog extends JDialog {
         }
     }
 
-    public void showDialog(boolean learningButtonOn, boolean craftButtonOn, boolean integrityButtonOn)
+    public String showDialog(boolean learningButtonOn, boolean craftButtonOn, boolean integrityButtonOn)
     {
         learningButton.setEnabled(learningButtonOn);
         craftButton.setEnabled(craftButtonOn);
         integrityButton.setEnabled(integrityButtonOn);
         setVisible(true);
-    }
 
-    public String getButtonPressed() {
         return buttonPressed;
     }
 }

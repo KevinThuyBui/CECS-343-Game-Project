@@ -16,11 +16,11 @@ public class Card0 extends Card {
     public void play(Player thisPlayer) {
         if (thisPlayer.getRoom().getName().equals(location) | thisPlayer.getRoom().getName().equals(location1)) {
             thisPlayer.offsetLearning( 1);                                  //get 1 learning Chip
-            outcome = thisPlayer.getName() + " was awarded " + reward;
+            outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else
         {
-            outcome = thisPlayer.getName() + " was unabled to play: " + cardName;
+            outcome = failedOutcomeString(thisPlayer.getName());
         }
     }
 
