@@ -7,14 +7,14 @@ import main.Room;
 
 public class Card25 extends Card {
 
-    public Card25() {
+    Card25() {
         filePath = "main/Cards/cardm25.png";
         reward = "5 Quality Points and a Chip";
         cardName = "Program Crashes";
     }
 
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom() == Room.LACTATION_LOUNGE
                 && thisPlayer.getLearning() >= 2)
         {

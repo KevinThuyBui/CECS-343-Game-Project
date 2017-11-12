@@ -4,7 +4,8 @@ import main.Player;
 import main.Room;
 
 public class Card37 extends Card {
-    public Card37 ()
+
+    Card37()
     {
         cardName = "Enjoying Nature";
         filePath = "main/Cards/cardm37.png";
@@ -12,7 +13,7 @@ public class Card37 extends Card {
     }
 
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom().outsideECS())
         {
             thisPlayer.offsetCraft(1);

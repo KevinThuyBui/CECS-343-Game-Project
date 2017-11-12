@@ -1,15 +1,10 @@
 package main;
 
-import main.Cards.Card;
-import main.Cards.Card39;
-import main.Cards.Decks;
 import main.impl.DrawablePlayer;
 import main.impl.PlayerImpl;
 
 import javax.swing.*;
 import javax.swing.Timer;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -20,22 +15,18 @@ class PlayerController {
 
 
     private final Player[] players;
-    private static Decks decks;
 
     private int currentPlayer = 0;
     private final ControlPanel controlPanel;
 
-    public PlayerController(ControlPanel controlPanel) {
+    PlayerController(ControlPanel controlPanel) {
         this.controlPanel = controlPanel;
-
-        decks = Decks.getInstance();
 
         players = new Player[PLAYER_COUNT];
         randomizePlayers(players);
-
     }
 
-    public void setLabels(JLabel[] labels) {
+    void setLabels(JLabel[] labels) {
         if (labels.length != players.length) {
             throw new InputMismatchException("Number of labels does not match the number of players");
         }
@@ -44,15 +35,15 @@ class PlayerController {
         }
     }
 
-    public Player[] getPlayers() {
+    Player[] getPlayers() {
         return players;
     }
 
-    public Player getCurrentPlayer() {
+    Player getCurrentPlayer() {
         return players[currentPlayer];
     }
 
-    public void nextTurn() {
+    void nextTurn() {
         currentPlayer = (currentPlayer + 1) % 3;
         if (currentPlayer != 0) {
             beginComputerTurn();
@@ -75,21 +66,21 @@ class PlayerController {
         }
     }
 
-    private void initialDraw(Player player) {
-        player.draw();
+    //Each player starts with 5 cards
+    private void initialDraw(Player player)
+    {
+        for (int i = 0; i < 5; i++ )
+            player.draw();
     }
 
 
     private void beginComputerTurn() {
         controlPanel.setMoveEnabled(false);
         controlPanel.setRooms(new Room[0]);
-        final Timer timer = new Timer(500, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Room[] adjacentRooms = getCurrentPlayer().getRoom().getAdjacentRooms();
-                getCurrentPlayer().setRoom(adjacentRooms[ThreadLocalRandom.current().nextInt(adjacentRooms.length)]);
-                nextTurn();
-            }
+        final Timer timer = new Timer(500, e -> {
+            Room[] adjacentRooms = getCurrentPlayer().getRoom().getAdjacentRooms();
+            getCurrentPlayer().setRoom(adjacentRooms[ThreadLocalRandom.current().nextInt(adjacentRooms.length)]);
+            nextTurn();
         });
         timer.setRepeats(false);
         timer.start();

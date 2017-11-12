@@ -5,7 +5,7 @@ import main.Player;
 import main.Room;
 
 public class Card35 extends Card {
-    public Card35 ()
+    Card35()
     {
         cardName = "Learning Linux";
         filePath = "main/Cards/cardm35.png";
@@ -13,7 +13,7 @@ public class Card35 extends Card {
     }
 
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom() == Room.COMPUTER_LAB)
         {
             thisPlayer.offsetQuality(3);

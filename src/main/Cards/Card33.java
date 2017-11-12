@@ -6,7 +6,7 @@ import main.Player;
 import main.Room;
 
 public class Card33 extends Card {
-    public Card33 ()
+    Card33()
     {
         cardName = "Oral Communication";
         filePath = "main/Cards/cardm33.png";
@@ -14,7 +14,7 @@ public class Card33 extends Card {
     }
 
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom().outsideECS()
                 && thisPlayer.getRoom().isABuilding()
                 && thisPlayer.getIntegrety() >= 4)

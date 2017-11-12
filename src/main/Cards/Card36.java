@@ -6,7 +6,7 @@ import main.Player;
 import main.Room;
 
 public class Card36 extends Card {
-    public Card36 ()
+    Card36()
     {
         cardName = "Make a Friend";
         filePath = "main/Cards/cardm36.png";
@@ -14,7 +14,7 @@ public class Card36 extends Card {
     }
 
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom() == Room.NORTH_HALL
                 || thisPlayer.getRoom() == Room.SOUTH_HALL
                 && thisPlayer.getIntegrety() >= 2)

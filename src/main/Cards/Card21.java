@@ -5,14 +5,14 @@ import main.Room;
 
 public class Card21 extends Card {
 
-    public Card21() {
+    Card21() {
         filePath = "main/Cards/cardm21.png";
         reward = "5 Quality Points";
         cardName = "Pass Soccer Class";
     }
 
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom() == Room.GEORGE_ALLEN_FIELD
                 && thisPlayer.getCraft() >= 5)
         {

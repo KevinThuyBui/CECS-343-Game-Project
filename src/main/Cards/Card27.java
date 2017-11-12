@@ -6,14 +6,14 @@ import main.Room;
 
 public class Card27 extends Card {
 
-    public Card27() {
+    Card27() {
         filePath = "main/Cards/cardm27.png";
         reward = "1 Chip";
         cardName = "Loud Buzzing";
     }
 
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom() == Room.EAT_CLUB
                 && thisPlayer.getCraft() >= 3)
         {

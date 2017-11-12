@@ -4,7 +4,7 @@ import main.Player;
 import main.Room;
 
 public class Card34 extends Card {
-    public Card34 ()
+    Card34()
     {
         cardName = "Chem 111";
         filePath = "main/Cards/cardm34.png";
@@ -12,7 +12,7 @@ public class Card34 extends Card {
     }
 
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom().outsideECS()
                 && thisPlayer.getRoom().isABuilding()
                 && thisPlayer.getCraft() >= 6)

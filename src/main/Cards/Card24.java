@@ -6,14 +6,14 @@ import main.Room;
 
 public class Card24 extends Card {
 
-    public Card24() {
+    Card24() {
         filePath = "main/Cards/cardm24.png";
         reward = "5 Quality Points and a Card";
         cardName = "Meet the Dean";
     }
 
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom() == Room.NORTH_HALL
                 && thisPlayer.getRoom() == Room.SOUTH_HALL
                 && thisPlayer.getIntegrety() >= 3

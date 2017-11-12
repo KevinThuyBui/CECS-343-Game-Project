@@ -21,7 +21,7 @@ public abstract class Card {
         return filePath;
     }
 
-    abstract void play(Player thisPlayer);
+    public abstract void play(Player thisPlayer);
 
     public String failedOutcomeString(String playerName)
     {
@@ -40,17 +40,16 @@ public abstract class Card {
 
     void processChipDialog(Player player, String displayOutcome)
     {
-        if (displayOutcome == "integrity")
-        {
-            player.offsetIntegrity(1);
-        }
-        else if (displayOutcome == "craft")
-        {
-            player.offsetCraft(1);
-        }
-        else
-        {
-            player.offsetLearning(1);
+        switch (displayOutcome) {
+            case "integrity":
+                player.offsetIntegrity(1);
+                break;
+            case "craft":
+                player.offsetCraft(1);
+                break;
+            default:
+                player.offsetLearning(1);
+                break;
         }
     }
 

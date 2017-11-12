@@ -4,14 +4,14 @@ import main.Player;
 import main.Room;
 
 public class Card38 extends Card {
-    public Card38()
+    Card38()
     {
         cardName = "Student Parking";
         filePath = "main/Cards/cardm38.png";
         reward = "1 Quality Chip";
     }
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom() == Room.STUDENT_PARKING)
         {
             thisPlayer.offsetQuality(1);

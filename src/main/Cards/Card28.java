@@ -7,14 +7,14 @@ import main.Room;
 
 public class Card28 extends Card {
 
-    public Card28() {
+    Card28() {
         filePath = "main/Cards/cardm28.png";
         reward = "1 Chip";
         cardName = "Professor Englert";
     }
 
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom() == Room.CECS_CONFERENCE_ROOM)
         {
             processChipDialog(thisPlayer, new ChipDialog().showDialog(true, true, true));

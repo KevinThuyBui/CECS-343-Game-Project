@@ -5,14 +5,14 @@ import main.Room;
 
 public class Card26 extends Card {
 
-    public Card26() {
+    Card26() {
         filePath = "main/Cards/cardm26.png";
         reward = "2 Craft Chips";
         cardName = "Press the Right Floor";
     }
 
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom() == Room.ELEVATORS
                 && thisPlayer.getLearning() >= 4)
         {

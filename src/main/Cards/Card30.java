@@ -4,7 +4,7 @@ import main.Player;
 import main.Room;
 
 public class Card30 extends Card {
-    public Card30 ()
+    Card30()
     {
         filePath = "main/Cards/cardm30.png";
         reward = "1 Learning Chip and 1 Card";
@@ -12,7 +12,7 @@ public class Card30 extends Card {
     }
 
     @Override
-    void play(Player thisPlayer) {
+    public void play(Player thisPlayer) {
         if (thisPlayer.getRoom() == Room.LIBRARY)
         {
             thisPlayer.offsetLearning(1);
