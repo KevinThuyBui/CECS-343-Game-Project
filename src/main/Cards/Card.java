@@ -31,4 +31,26 @@ public abstract class Card {
     {
         return playerName + " was awarded " + reward + " for playing " + cardName;
     }
+
+    public String getOutcome()
+    {
+        return outcome;
+    }
+
+    void processChipDialog(Player player, String displayOutcome)
+    {
+        if (displayOutcome == "integrity")
+        {
+            player.offsetIntegrity(1);
+        }
+        else if (displayOutcome == "craft")
+        {
+            player.offsetCraft(1);
+        }
+        else
+        {
+            player.offsetLearning(1);
+        }
+    }
+
 }
