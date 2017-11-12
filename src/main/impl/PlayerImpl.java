@@ -13,10 +13,12 @@ package main.impl;/*    Copyright 2017 Ton Ly
   limitations under the License.
 */
 
+import main.Card;
 import main.Player;
 import main.Room;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class PlayerImpl implements Player {
 
@@ -28,6 +30,8 @@ public class PlayerImpl implements Player {
     private int craft;
     private int learning;
     private int quality;
+
+    private ArrayList<main.Card> userHand;
 
     public PlayerImpl(String name, Room currentRoom, int integrety, int craft, int learning, int quality) {
         this.name = name;
@@ -99,6 +103,14 @@ public class PlayerImpl implements Player {
     @Override
     public String toString() {
         return String.format("%6s %6d %6d %6d %6d %s", name, integrety, craft, learning, quality, currentRoom);
+    }
+
+    public ArrayList<Card> getUserHand() {
+        return userHand;
+    }
+
+    public void setUserHand(ArrayList<Card> userHand) {
+        this.userHand = userHand;
     }
 }
 

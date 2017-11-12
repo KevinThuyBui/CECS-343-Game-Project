@@ -51,6 +51,8 @@ public class MainView extends JFrame {
         controlPanel.setRooms(playerState.getCurrentPlayer().getRoom().getAdjacentRooms());
         controlPanel.addMoveListener(new MoveListener());
         getContentPane().add(controlPanel, BorderLayout.SOUTH);
+
+
     }
 
     private class MoveListener implements RoomMoveListener {
