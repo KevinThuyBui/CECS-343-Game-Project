@@ -5,21 +5,20 @@ import main.ChipDialog;
 import main.Player;
 import main.Room;
 
-public class Card33 extends Card {
-    public Card33 ()
-    {
-        cardName = "Oral Communication";
-        filePath = "main/Cards/cardm33.png";
-        reward = "4 Quality Points and a chip";
+public class Card25 extends Card {
+
+    public Card25() {
+        filePath = "main/Cards/cardm25.png";
+        reward = "5 Quality Points and a Chip";
+        cardName = "Program Crashes";
     }
 
     @Override
     void play(Player thisPlayer) {
-        if (thisPlayer.getRoom().outsideECS()
-                && thisPlayer.getRoom().isABuilding()
-                && thisPlayer.getIntegrety() >= 4)
+        if (thisPlayer.getRoom() == Room.LACTATION_LOUNGE
+                && thisPlayer.getLearning() >= 2)
         {
-            thisPlayer.offsetQuality(4);
+            thisPlayer.offsetQuality(5);
             processChipDialog(thisPlayer, new ChipDialog().showDialog(true,true,true));
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
@@ -28,5 +27,6 @@ public class Card33 extends Card {
             thisPlayer.discardCard(new CardDialog().display(thisPlayer));
             outcome = failedOutcomeString(thisPlayer.getName());
         }
+
     }
 }

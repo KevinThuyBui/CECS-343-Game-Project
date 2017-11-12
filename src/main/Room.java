@@ -88,4 +88,46 @@ public enum Room {
     public String toString() {
         return name;
     }
+
+    public boolean outsideECS()
+    {
+        switch (this)
+        {
+            case ECS_308:
+            case SOUTH_HALL:
+            case EAT_CLUB:
+            case CECS_CONFERENCE_ROOM:
+            case ELEVATORS:
+            case NORTH_HALL:
+            case LACTATION_LOUNGE:
+            case ROOM_OF_RETIREMENT:
+            case COMPUTER_LAB:
+            case ECS_302:
+                return false;
+
+            default:
+                return true;
+        }
+
+    }
+
+    public boolean isABuilding()
+    {
+        if (outsideECS())
+        {
+            switch (this) {
+                case LA_5:
+                case LIBRARY:
+                case PYRAMID:
+                case BRATWURST_HALL:
+                case STUDENT_PARKING:
+                    return true;
+                default:
+                    return false;
+
+            }
+        }
+        else
+            return true;
+    }
 }

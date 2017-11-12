@@ -3,27 +3,27 @@ package main.Cards;
 import main.Player;
 import main.Room;
 
-public class Card34 extends Card {
-    public Card34 ()
-    {
-        cardName = "Chem 111";
-        filePath = "main/Cards/cardm34.png";
+public class Card21 extends Card {
+
+    public Card21() {
+        filePath = "main/Cards/cardm21.png";
         reward = "5 Quality Points";
+        cardName = "Pass Soccer Class";
     }
 
     @Override
     void play(Player thisPlayer) {
-        if (thisPlayer.getRoom().outsideECS()
-                && thisPlayer.getRoom().isABuilding()
-                && thisPlayer.getCraft() >= 6)
+        if (thisPlayer.getRoom() == Room.GEORGE_ALLEN_FIELD
+                && thisPlayer.getCraft() >= 5)
         {
             thisPlayer.offsetQuality(5);
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else
         {
-            thisPlayer.setRoom(Room.STUDENT_PARKING);
+            thisPlayer.offsetQuality(3);
             outcome = failedOutcomeString(thisPlayer.getName());
         }
+
     }
 }

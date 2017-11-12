@@ -3,18 +3,19 @@ package main.Cards;
 import main.Player;
 import main.Room;
 
-public class Card38 extends Card {
-    public Card38()
-    {
-        cardName = "Student Parking";
-        filePath = "main/Cards/cardm38.png";
-        reward = "1 Quality Chip";
+public class Card22 extends Card {
+
+    public Card22() {
+        filePath = "main/Cards/cardm22.png";
+        reward = "1 Integrity and 1 Craft Chip";
+        cardName = "Fall in the Pond";
     }
+
     @Override
     void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.STUDENT_PARKING)
+        if (thisPlayer.getRoom() == Room.JAPANESE_GARDEN
+                && thisPlayer.getLearning() >= 3)
         {
-            thisPlayer.offsetQuality(1);
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else
@@ -22,5 +23,6 @@ public class Card38 extends Card {
             thisPlayer.setRoom(Room.LACTATION_LOUNGE);
             outcome = failedOutcomeString(thisPlayer.getName());
         }
+
     }
 }

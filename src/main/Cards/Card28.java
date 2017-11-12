@@ -1,28 +1,30 @@
 package main.Cards;
 
+import main.CardDialog;
 import main.ChipDialog;
 import main.Player;
 import main.Room;
 
-public class Card32 extends Card {
-    public Card32 ()
-    {
-        filePath = "main/Cards/cardm32.png";
+public class Card28 extends Card {
+
+    public Card28() {
+        filePath = "main/Cards/cardm28.png";
         reward = "1 Chip";
-        cardName = "The Outpost";
+        cardName = "Professor Englert";
     }
 
     @Override
     void play(Player thisPlayer) {
-        if (thisPlayer.getRoom().outsideECS()
-                && thisPlayer.getRoom() != Room.FORBIDDEN_PARKING)
+        if (thisPlayer.getRoom() == Room.CECS_CONFERENCE_ROOM)
         {
             processChipDialog(thisPlayer, new ChipDialog().showDialog(true, true, true));
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else
         {
+            thisPlayer.discardCard(new CardDialog().display(thisPlayer));
             outcome = failedOutcomeString(thisPlayer.getName());
         }
+
     }
 }

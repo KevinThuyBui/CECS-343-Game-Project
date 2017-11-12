@@ -1,25 +1,28 @@
 package main.Cards;
 
+import main.ChipDialog;
 import main.Player;
 import main.Room;
 
 public class Card35 extends Card {
     public Card35 ()
     {
-        filePath = "main/Cards/cardm39.png";
-        reward = "10 Quality Points";
+        cardName = "Learning Linux";
+        filePath = "main/Cards/cardm35.png";
+        reward = "3 Quality Points and a chip";
     }
 
     @Override
     void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.STUDENT_PARKING)
+        if (thisPlayer.getRoom() == Room.COMPUTER_LAB)
         {
-            thisPlayer.offsetQuality(10);
+            thisPlayer.offsetQuality(3);
+            processChipDialog(thisPlayer, new ChipDialog().showDialog(true, true, true));
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else
         {
-            thisPlayer.setRoom(Room.LACTATION_LOUNGE);
+            thisPlayer.offsetQuality(-1);
             outcome = failedOutcomeString(thisPlayer.getName());
         }
     }

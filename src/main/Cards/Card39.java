@@ -7,6 +7,7 @@ import main.Room;
 public class Card39 extends Card {
     public Card39()
     {
+        cardName = "Goodbye, Professor";
         filePath = "main/Cards/cardm39.png";
         reward = "10 Quality Points";
     }

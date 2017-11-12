@@ -6,20 +6,22 @@ import main.Room;
 public class Card30 extends Card {
     public Card30 ()
     {
-        filePath = "main/Cards/cardm39.png";
-        reward = "10 Quality Points";
+        filePath = "main/Cards/cardm30.png";
+        reward = "1 Learning Chip and 1 Card";
+        cardName = "Elective Class";
     }
 
     @Override
     void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.STUDENT_PARKING)
+        if (thisPlayer.getRoom() == Room.LIBRARY)
         {
-            thisPlayer.offsetQuality(10);
+            thisPlayer.offsetLearning(1);
+            thisPlayer.draw();
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else
         {
-            thisPlayer.setRoom(Room.LACTATION_LOUNGE);
+            thisPlayer.offsetQuality(-2);
             outcome = failedOutcomeString(thisPlayer.getName());
         }
     }

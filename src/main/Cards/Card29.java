@@ -3,21 +3,22 @@ package main.Cards;
 import main.Player;
 import main.Room;
 
-public class Card34 extends Card {
-    public Card34 ()
-    {
-        cardName = "Chem 111";
-        filePath = "main/Cards/cardm34.png";
-        reward = "5 Quality Points";
+public class Card29 extends Card {
+
+    public Card29() {
+        filePath = "main/Cards/cardm29.png";
+        reward = "5 Quality Points and a Card";
+        cardName = "Soccer Goalie";
     }
 
     @Override
     void play(Player thisPlayer) {
-        if (thisPlayer.getRoom().outsideECS()
-                && thisPlayer.getRoom().isABuilding()
-                && thisPlayer.getCraft() >= 6)
+        if (thisPlayer.getRoom() == Room.GEORGE_ALLEN_FIELD
+                && thisPlayer.getCraft() >= 3
+                && thisPlayer.getLearning() >= 3)
         {
             thisPlayer.offsetQuality(5);
+            thisPlayer.draw();
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else
@@ -25,5 +26,6 @@ public class Card34 extends Card {
             thisPlayer.setRoom(Room.STUDENT_PARKING);
             outcome = failedOutcomeString(thisPlayer.getName());
         }
+
     }
 }

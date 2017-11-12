@@ -1,6 +1,7 @@
 package main.Cards;
 
 import main.Player;
+import main.Room;
 
 public abstract class Card {
     String cardName;
@@ -52,5 +53,6 @@ public abstract class Card {
             player.offsetLearning(1);
         }
     }
+
 
 }
