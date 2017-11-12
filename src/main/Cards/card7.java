@@ -1,11 +1,8 @@
-package main;
+package main.Cards;
+
+import main.Player;
 
 public class card7 extends Card {
-
-    private String cardName;
-    private String location;
-    private String reward;
-    private String outcome;
 
     public card7(){
         cardName = "Finding the Lab";

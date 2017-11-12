@@ -13,7 +13,7 @@ package main.impl;/*    Copyright 2017 Ton Ly
   limitations under the License.
 */
 
-import main.Card;
+import main.Cards.Card;
 import main.Player;
 import main.Room;
 
@@ -31,7 +31,7 @@ public class PlayerImpl implements Player {
     private int learning;
     private int quality;
 
-    private ArrayList<main.Card> userHand;
+    private ArrayList<Card> userHand;
 
     public PlayerImpl(String name, Room currentRoom, int integrety, int craft, int learning, int quality) {
         this.name = name;

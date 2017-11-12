@@ -1,11 +1,8 @@
-package main;
+package main.Cards;
+
+import main.Player;
 
 public class card4 extends Card {
-
-    private String cardName;
-    private String location;
-    private String reward;
-    private String outcome;
 
     public card4(){
         cardName = "Professor Murgolo's CECS 174 Class";

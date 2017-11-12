@@ -1,5 +1,7 @@
 package main;
 
+import main.Cards.Card;
+
 import javax.swing.*;
 
 public class CardButton extends JButton {
@@ -11,7 +13,7 @@ public class CardButton extends JButton {
     private Icon getCardImage(Card inputCard)
     {
         final ImageIcon cardIcon;
-        cardIcon = new ImageIcon(inputCard.getImagePath());
+        cardIcon = new ImageIcon(inputCard.getFilePath());
 
         return cardIcon;
     }

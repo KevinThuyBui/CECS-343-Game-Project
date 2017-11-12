@@ -1,10 +1,9 @@
-package main;
+package main.Cards;
+
+import main.Player;
 
 public class card2 extends Card {
-    private String cardName;
-    private String location;
-    private String reward;
-    private String outcome;
+
 
     public card2(){
         cardName = "Lunch at Bratwurst Hall";

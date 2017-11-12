@@ -1,8 +1,8 @@
 package main;
 
+import main.Cards.Card;
 import main.impl.PlayerImpl;
 
-import javax.smartcardio.Card;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +32,7 @@ public class CardDialog extends JDialog {
 
    public void display(PlayerImpl user)
    {
-       for (main.Card card : user.getUserHand())
+       for (Card card : user.getUserHand())
        {
            CardButton cardButton = new CardButton(card);
            cardScrollDisplay.add(cardButton);

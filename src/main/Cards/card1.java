@@ -1,12 +1,9 @@
 //requires dialog
-package main;
+package main.Cards;
+
+import main.Player;
 
 public class card1 extends Card {
-
-    private String cardName;
-    private String location;
-    private String reward; // "1 Learning Chip or 1 Integrity Chip"
-    private String outcome;
 
     public card1(){
         cardName = "Math 122";
