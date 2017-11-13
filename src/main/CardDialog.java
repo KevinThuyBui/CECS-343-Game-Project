@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class CardDialog extends JDialog {
@@ -66,7 +67,21 @@ public class CardDialog extends JDialog {
         public CardButton(Card inputCard) {
             super();
             this.inputCard = inputCard;
-            setIcon(new ImageIcon(Card.getImageURL(inputCard)));
+            BufferedImage read;
+            try {
+                read = ImageIO.read(Card.getImageURL(inputCard));
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+            BufferedImage unpressed = new BufferedImage(read.getWidth(), read.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+            Graphics2D graphics = unpressed.createGraphics();
+            graphics.drawImage(read, 0, 0, null);
+            graphics.dispose();
+            setIcon(new ImageIcon(unpressed));
+            ImageIcon pressedIcon = new ImageIcon(Card.getImageURL(inputCard));
+            setSelectedIcon(pressedIcon);
+            setPressedIcon(pressedIcon);
         }
 
 
