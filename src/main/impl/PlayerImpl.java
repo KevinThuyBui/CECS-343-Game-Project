@@ -57,7 +57,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public int getIntegrety() {
+    public int getIntegrity() {
         return integrety;
     }
 
@@ -120,8 +120,13 @@ public class PlayerImpl implements Player {
         return hand;
     }
 
-    public void draw() {
+    public void drawCard() {
         this.hand.add(0, Decks.getInstance().drawCard());
+    }
+
+    @Override
+    public String chooseChip(boolean learning, boolean craft, boolean integrity) {
+        return null;
     }
 }
 

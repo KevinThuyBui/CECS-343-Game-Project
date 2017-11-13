@@ -1,6 +1,8 @@
 package main;
 
+import main.impl.ComputerPlayer;
 import main.impl.DrawablePlayer;
+import main.impl.HumanPlayer;
 import main.impl.PlayerImpl;
 
 import javax.swing.*;
@@ -24,12 +26,22 @@ class PlayerController {
         randomizePlayers(players);
     }
 
-    void setLabels(JLabel[] labels) {
+    void setPlayerLabels(JLabel[] labels) {
         if (labels.length != players.length) {
             throw new InputMismatchException("Number of labels does not match the number of players");
         }
+
         for (int i = 0; i < labels.length; i++) {
             players[i] = new DrawablePlayer(players[i], labels[i], 10 + i * LABEL_OFFSET);
+        }
+
+        for (int i = 0; i < players.length; i++) {
+            if (i == 0) {
+                players[i] = new HumanPlayer(players[i]);
+            } else {
+                players[i] = new ComputerPlayer(players[i]);
+            }
+
         }
     }
 
@@ -69,7 +81,7 @@ class PlayerController {
     private void initialDraw(Player player)
     {
         for (int i = 0; i < 5; i++ )
-            player.draw();
+            player.drawCard();
     }
 
 

@@ -6,24 +6,23 @@ import main.Room;
 public class Card26 extends Card {
 
     Card26() {
-        imagePath = "main/Cards/cardm26.png";
-        reward = "2 Craft Chips";
-        cardName = "Press the Right Floor";
+        super("Press the Right Floor", 0, 0, 4);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.ELEVATORS
-                && thisPlayer.getLearning() >= 4)
-        {
-            thisPlayer.offsetCraft(2);
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.offsetQuality(2);
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.ELEVATORS;
+    }
 
+    @Override
+    protected void success(Player p) {
+        p.offsetCraft(2);
+        setSuccessOutcome(p, 2, "Craft");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        p.offsetQuality(-2);
+        setFailOutcome(p, "2 Quality Points.");
     }
 }

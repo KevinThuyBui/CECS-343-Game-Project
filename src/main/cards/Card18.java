@@ -6,23 +6,25 @@ import main.Room;
 public class Card18 extends Card {
 
     public Card18(){
-        cardName = "Choosing a Major";
-        location = "CECS Conference";
-        reward = "5 Quality Points";
-        imagePath = "main/Cards/cardm18.png";
+        super("Choosing a Major", 3, 0, 0);
     }
 
 
     @Override
-    public void play(Player thisPlayer) {
-        if ((thisPlayer.getRoom()== Room.CECS_CONFERENCE_ROOM) && thisPlayer.getIntegrety() == 3) {
-            thisPlayer.offsetQuality(5); //get 1 craft Chip
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.offsetQuality(-3);
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.CECS_CONFERENCE_ROOM;
     }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetQuality(5);
+        setSuccessOutcome(p, "5 Quality Points.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        p.offsetQuality(-3);
+        setFailOutcome(p, "3 Quality Points.");
+    }
+
 }

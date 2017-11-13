@@ -6,25 +6,27 @@ import main.CardDialog;
 
 public class Card14 extends Card {
 
-    public Card14(){
-        cardName = "Math 123";
-        location = "ECS 302 and 308";
-        reward = "5 Quality Points";
-        imagePath = "main/Cards/cardm14.png";
+    public Card14() {
+        super("Math 123", 0, 0, 5);
     }
-
 
     @Override
-    public void play(Player thisPlayer) {
-        if ((thisPlayer.getRoom()== Room.ECS_302 || thisPlayer.getRoom() == Room.ECS_308) && thisPlayer.getLearning() == 5) {
-            thisPlayer.offsetQuality(5); //get 1 craft Chip
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.offsetQuality(-3);
-            thisPlayer.discardCard(new CardDialog().display(thisPlayer));
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.ECS_302 || room == Room.ECS_308;
     }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetQuality(5);
+        setSuccessOutcome(p, "5 Quality Points.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        p.offsetQuality(-3);
+        Card discard = new CardDialog().display(p);
+        p.discardCard(discard);
+        setFailOutcome(p, "3 Quality Points and " + discard.getCardName() + ".");
+    }
+
 }

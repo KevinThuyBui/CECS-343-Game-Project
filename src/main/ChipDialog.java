@@ -20,14 +20,13 @@ public class ChipDialog extends JDialog {
         learningButton.addActionListener(listener);
         integrityButton.addActionListener(listener);
         craftButton.addActionListener(listener);
-
     }
 
     private class ChipButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            buttonPressed = e.getActionCommand().replace("Button", "");
+            buttonPressed = e.getActionCommand();
             dispose();
         }
     }

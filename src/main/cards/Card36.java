@@ -6,27 +6,27 @@ import main.Player;
 import main.Room;
 
 public class Card36 extends Card {
-    Card36()
-    {
-        cardName = "Make a Friend";
-        imagePath = "main/Cards/cardm36.png";
-        reward = "3 Quality Points and a chip";
+    Card36() {
+        super("Make a Friend", 2, 0, 0);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.NORTH_HALL
-                || thisPlayer.getRoom() == Room.SOUTH_HALL
-                && thisPlayer.getIntegrety() >= 2)
-        {
-            thisPlayer.offsetQuality(3);
-            processChipDialog(thisPlayer, new ChipDialog().showDialog(true, true, true));
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.discardCard(new CardDialog().display(thisPlayer));
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.NORTH_HALL
+                || room == Room.SOUTH_HALL;
+    }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetQuality(3);
+        String chip = p.chooseChip();
+        setSuccessOutcome(p, "3 Quality Points and 1 " + chip + " chip.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        Card discard = new CardDialog().display(p);
+        p.discardCard(discard);
+        setFailOutcome(p, discard + ".");
     }
 }

@@ -16,15 +16,6 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="733f6" class="javax.swing.JButton" binding="learningButton" default-binding="true">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <icon value="main/LearningChip.png"/>
-              <text value="Learning"/>
-            </properties>
-          </component>
           <component id="2b15f" class="javax.swing.JButton" binding="craftButton" default-binding="true">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -41,6 +32,15 @@
             <properties>
               <icon value="main/CraftChip.png"/>
               <text value="Integrity"/>
+            </properties>
+          </component>
+          <component id="733f6" class="javax.swing.JButton" binding="learningButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <icon value="main/LearningChip.png"/>
+              <text value="Learning"/>
             </properties>
           </component>
         </children>

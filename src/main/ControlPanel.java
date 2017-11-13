@@ -134,7 +134,7 @@ public class ControlPanel extends JPanel {
                     displayPanel.updateInfo();
                     break;
                 case "Draw Card":
-                    player.draw();
+                    player.drawCard();
                     cardPanel.setCardIndex(0);
                     setDrawCardEnabled(false);
                     setMoveEnabled(true);
@@ -143,7 +143,7 @@ public class ControlPanel extends JPanel {
                     break;
                 case "Play Card":
                     Card card = player.getHand().get(cardPanel.cardIndex);
-                    card.play(player);
+                    card.useOn(player);
                     setPlayCardEnabled(false);
                     setEndTurnEnabled(true);
                     displayPanel.updateInfo();
@@ -212,7 +212,7 @@ public class ControlPanel extends JPanel {
             sb.append("Cards in Discard: ").append(Decks.getInstance().discardCount()).append("\n\n");
             sb.append(String.format("%-9s | %-9s %-8s %-8s | %-9s | %s%n", "Name", "Integrity", "  Craft", "Learning", " Quality", "Current Room"));
             for (Player p : controller.getPlayers()) {
-                sb.append(String.format("%-9s | %5d     %5d   %5d     | %5d     | %s%n", p.getName(), p.getIntegrety(), p.getCraft(), p.getLearning(), p.getQuality(), p.getRoom()));
+                sb.append(String.format("%-9s | %5d     %5d   %5d     | %5d     | %s%n", p.getName(), p.getIntegrity(), p.getCraft(), p.getLearning(), p.getQuality(), p.getRoom()));
             }
             sb.append("\n");
             sb.append("TURN: ").append(player.getName()).append(" in ").append(player.getRoom());

@@ -1,26 +1,29 @@
 package main.cards;
 
+import main.CardDialog;
 import main.Player;
 import main.Room;
 
-public class Card15 extends Card{
+public class Card15 extends Card {
 
     public Card15() {
-        cardName = "Physics 151";
-        location = "ECS 308";
-        reward = "5 Quality Points";
-        imagePath = "main/Cards/cardm15.png";
+        super("Physics 151", 0, 3, 0);
     }
 
-    public void play(Player thisPlayer) {
-        if ((thisPlayer.getRoom() == Room.ECS_308) && thisPlayer.getCraft() == 3) {
-            thisPlayer.offsetQuality(5); //get 1 craft Chip
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.offsetQuality(-3);
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    @Override
+    public boolean canPlay(Room room) {
+        return room == Room.ECS_308;
+    }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetQuality(5);
+        setSuccessOutcome(p, "5 Quality Points.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        p.offsetQuality(-3);
+        setFailOutcome(p, "3 Quality Points.");
     }
 }

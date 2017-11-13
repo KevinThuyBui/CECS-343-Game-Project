@@ -5,26 +5,25 @@ import main.Player;
 import main.Room;
 
 public class Card39 extends Card {
-    Card39()
-    {
-        cardName = "Goodbye, Professor";
-        imagePath = "main/Cards/cardm39.png";
-        reward = "10 Quality Points";
+    Card39() {
+        super("Goodbye, Professor", 6, 6, 6);
     }
+
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.ROOM_OF_RETIREMENT
-                && thisPlayer.getIntegrety() >= 6
-                && thisPlayer.getCraft() >= 6
-                && thisPlayer.getLearning() >= 6)
-        {
-            thisPlayer.offsetQuality(10);
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.discardCard(new CardDialog().display(thisPlayer));
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.ROOM_OF_RETIREMENT;
+    }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetQuality(10);
+        setSuccessOutcome(p, "10 Quality Points.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        Card discard = new CardDialog().display(p);
+        p.discardCard(discard);
+        setFailOutcome(p, discard + ".\nGame Card \"Goodbye, Professor\" has been dropped in the Room of Retirement");
     }
 }

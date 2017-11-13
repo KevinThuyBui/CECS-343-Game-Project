@@ -7,28 +7,25 @@ import main.Room;
 public class Card24 extends Card {
 
     Card24() {
-        imagePath = "main/Cards/cardm24.png";
-        reward = "5 Quality Points and a Card";
-        cardName = "Meet the Dean";
+        super("Meet the Dean", 3, 3, 3);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.NORTH_HALL
-                && thisPlayer.getRoom() == Room.SOUTH_HALL
-                && thisPlayer.getIntegrety() >= 3
-                && thisPlayer.getLearning() >= 3
-                && thisPlayer.getCraft() >= 3)
-        {
-            thisPlayer.offsetQuality(5);
-            thisPlayer.draw();
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.discardCard(new CardDialog().display(thisPlayer));
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.ECS_302 || room == Room.ECS_308;
+    }
 
+    @Override
+    protected void success(Player p) {
+        p.offsetQuality(3);
+        p.drawCard();
+        setSuccessOutcome(p, "5 Quality Points and a card.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        Card discard = new CardDialog().display(p);
+        p.discardCard(discard);
+        setFailOutcome(p, discard + ".");
     }
 }

@@ -8,21 +8,23 @@ public class Card3 extends Card {
     static String oneUp = "learning";
 
     public Card3(){
-        cardName = "Research Compilers";
-        location = "Library";
-        reward = "1 Learning Chip";
-        imagePath = "main/Cards/cardm03.png";
+        super("Research Compilers", 0, 0, 0);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.LIBRARY) {
-            processChipDialog( thisPlayer, oneUp);                                 //get 1 learning Chip
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.LIBRARY;
     }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetLearning(1);
+        setSuccessOutcome(p, "1 Learning Chip.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+
+    }
+
 }

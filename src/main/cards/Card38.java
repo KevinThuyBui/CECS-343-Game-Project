@@ -4,23 +4,24 @@ import main.Player;
 import main.Room;
 
 public class Card38 extends Card {
-    Card38()
-    {
-        cardName = "Student Parking";
-        imagePath = "main/Cards/cardm38.png";
-        reward = "1 Quality Chip";
+    Card38() {
+        super("Student Parking", 0, 0, 0);
     }
+
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.STUDENT_PARKING)
-        {
-            thisPlayer.offsetQuality(1);
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.setRoom(Room.LACTATION_LOUNGE);
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.STUDENT_PARKING;
+    }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetCraft(1);
+        p.setRoom(Room.LACTATION_LOUNGE);
+        setSuccessOutcome(p, "1 Craft and Teleports to the Lactation Lounge");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+
     }
 }

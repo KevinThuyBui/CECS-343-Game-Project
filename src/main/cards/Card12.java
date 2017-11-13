@@ -5,26 +5,25 @@ import main.Room;
 
 public class Card12 extends Card {
 
-    static String oneUp = "craft";
-
-    public Card12(){
-        cardName = "Late for Class";
-        location = "Any space other than Forbidden Parking";
-        reward = "1 Craft Chip";
-        imagePath = "main/Cards/cardm12.png";
+    public Card12() {
+        super("Late for Class", 0, 0, 0);
     }
-
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom()!= Room.FORBIDDEN_PARKING) {
-            processChipDialog( thisPlayer, oneUp); //get 1 craft Chip
-            thisPlayer.setRoom(Room.LACTATION_LOUNGE); //sets player Room
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room != Room.FORBIDDEN_PARKING;
     }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetCraft(1);
+        p.setRoom(Room.LACTATION_LOUNGE);
+        setSuccessOutcome(p, "1 Craft and Teleports to the Lactation Lounge");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+
+    }
+
 }

@@ -5,23 +5,24 @@ import main.Room;
 
 public class Card2 extends Card {
 
-    static String oneUp = "craft";
-
     public Card2(){
-        cardName = "Lunch at Bratwurst Hall";
-        location = "Bratwurst Hall";
-        reward = "1 Craft Chip";
-        imagePath = "main/Cards/cardm02.png";
+        super("Lunch at Bratwurst Hall", 0, 0, 0);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom()== Room.BRATWURST_HALL) {           //played at Bratwurst Hall
-            processChipDialog( thisPlayer, oneUp);     //get 1 Craft Chip
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else{
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.BRATWURST_HALL;
     }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetCraft(1);
+        setSuccessOutcome(p, "1 Craft Chip.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+
+    }
+
 }

@@ -3,26 +3,27 @@ package main.cards;
 import main.Player;
 import main.Room;
 
-public class Card17 extends Card{
+public class Card17 extends Card {
 
-    public Card17(){
-        cardName = "Learning Netbeans";
-        location = "ECS 302 and 308";
-        reward = "5 Quality Points";
-        imagePath = "main/Cards/cardm17.png";
+    public Card17() {
+        super("Learning Netbeans", 0, 0, 3);
     }
-
 
     @Override
-    public void play(Player thisPlayer) {
-        if ((thisPlayer.getRoom()== Room.LACTATION_LOUNGE) && thisPlayer.getLearning() == 3) {
-            thisPlayer.offsetQuality(5); //get 1 craft Chip
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.offsetQuality(-3);
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.LACTATION_LOUNGE;
     }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetQuality(5);
+        setSuccessOutcome(p, "5 Quality Points.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        p.offsetQuality(-3);
+        setFailOutcome(p, "3 Quality Points.");
+    }
+
 }

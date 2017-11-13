@@ -5,24 +5,24 @@ import main.Room;
 
 public class Card7 extends Card {
 
-    static String oneUp = "integrity";
 
-    public Card7(){
-        cardName = "Finding the Lab";
-        location = "Elevators";
-        reward = "1 Integrity Chip";
-        imagePath = "main/Cards/cardm07.png";
+    public Card7() {
+        super("Finding the Lab", 0, 0, 0);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom()== Room.ELEVATORS) {
-            processChipDialog( thisPlayer, oneUp);                                  //get 1 Integrity chip
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.ELEVATORS;
+    }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetIntegrity(1);
+        setSuccessOutcome(p, "1 Integrity Chip.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+
     }
 }

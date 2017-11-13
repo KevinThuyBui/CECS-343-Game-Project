@@ -6,25 +6,23 @@ import main.Room;
 public class Card20 extends Card {
 
     Card20() {
-        imagePath = "main/Cards/cardm20.png";
-        reward = "5 Quality Points";
-        cardName = "Make the Dean's List";
+        super("Make the Dean's List", 0, 0, 6);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.NORTH_HALL
-                || thisPlayer.getRoom() == Room.SOUTH_HALL
-                && thisPlayer.getLearning() >= 6)
-        {
-            thisPlayer.offsetQuality(5);
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.setRoom(Room.STUDENT_PARKING);
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.GEORGE_ALLEN_FIELD;
+    }
 
+    @Override
+    protected void success(Player p) {
+        p.offsetQuality(5);
+        setSuccessOutcome(p, "5 Quality Points.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        p.setRoom(Room.STUDENT_PARKING);
+        outcome = p + " failed to play " + this + ", teleporting to Student Parking.";
     }
 }

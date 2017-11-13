@@ -6,23 +6,24 @@ import main.Room;
 public class Card22 extends Card {
 
     Card22() {
-        imagePath = "main/Cards/cardm22.png";
-        reward = "1 Integrity and 1 Craft Chip";
-        cardName = "Fall in the Pond";
+        super("Fall in the Pond", 0, 0, 3);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.JAPANESE_GARDEN
-                && thisPlayer.getLearning() >= 3)
-        {
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.setRoom(Room.LACTATION_LOUNGE);
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.JAPANESE_GARDEN;
+    }
 
+    @Override
+    protected void success(Player p) {
+        p.offsetIntegrity(1);
+        p.offsetCraft(1);
+        setSuccessOutcome(p, "1 Integrity Chip and 1 Craft Chip.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        p.setRoom(Room.LACTATION_LOUNGE);
+        outcome = p + " failed to play " + this + ", teleporting to the Lactation Lounge.";
     }
 }

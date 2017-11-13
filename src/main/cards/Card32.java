@@ -7,22 +7,23 @@ import main.Room;
 public class Card32 extends Card {
     Card32()
     {
-        imagePath = "main/Cards/cardm32.png";
-        reward = "1 Chip";
-        cardName = "The Outpost";
+        super("The Outpost", 0, 0, 0);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom().outsideECS()
-                && thisPlayer.getRoom() != Room.FORBIDDEN_PARKING)
-        {
-            processChipDialog(thisPlayer, new ChipDialog().showDialog(true, true, true));
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room.outsideECS()
+                && room != Room.FORBIDDEN_PARKING;
+    }
+
+    @Override
+    protected void success(Player p) {
+        String chip = p.chooseChip(true, true, false);
+        setSuccessOutcome(p, 1, chip);
+    }
+
+    @Override
+    protected void penalty(Player p) {
+
     }
 }

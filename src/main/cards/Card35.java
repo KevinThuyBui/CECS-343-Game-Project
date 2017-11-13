@@ -5,25 +5,26 @@ import main.Player;
 import main.Room;
 
 public class Card35 extends Card {
-    Card35()
-    {
-        cardName = "Learning Linux";
-        imagePath = "main/Cards/cardm35.png";
-        reward = "3 Quality Points and a chip";
+    Card35() {
+        super("Learning Linux", 3, 2, 0);
+    }
+
+
+    @Override
+    public boolean canPlay(Room room) {
+        return room == Room.COMPUTER_LAB;
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.COMPUTER_LAB)
-        {
-            thisPlayer.offsetQuality(3);
-            processChipDialog(thisPlayer, new ChipDialog().showDialog(true, true, true));
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.offsetQuality(-1);
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    protected void success(Player p) {
+        p.offsetQuality(3);
+        String chip = p.chooseChip();
+        setSuccessOutcome(p, "3 Quality Points and 1 " + chip + " chip.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        p.offsetQuality(-1);
+        setFailOutcome(p, "1 Quality Point.");
     }
 }

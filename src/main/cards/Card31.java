@@ -6,27 +6,29 @@ import main.Room;
 public class Card31 extends Card {
     Card31()
     {
-        cardName = "Professor Hoffman";
-        imagePath = "main/Cards/cardm31.png";
-        reward = "5 Quality Points and 2 cards";
+        super("Professor Hoffman", 0, 0, 3);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (!thisPlayer.getRoom().outsideECS()
-                && thisPlayer.getRoom() != Room.LACTATION_LOUNGE
-                && thisPlayer.getLearning() >= 3)
-        {
-            thisPlayer.offsetQuality(5);
-            thisPlayer.draw();
-            thisPlayer.draw();
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.offsetQuality(-5);
-            thisPlayer.setRoom(Room.LACTATION_LOUNGE);
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return !room.outsideECS()
+                && room != Room.LACTATION_LOUNGE
+                && room != Room.NORTH_HALL
+                && room != Room.SOUTH_HALL;
+    }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetQuality(5);
+        p.drawCard();
+        p.drawCard();
+        setSuccessOutcome(p, "5 Quality Points and 2 Game Cards.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        p.setRoom(Room.LACTATION_LOUNGE);
+        p.offsetQuality(-5);
+        outcome = p + " failed to play " + this + ", losing 5 Quality Points and teleporting to the Lactation Lounge.";
     }
 }

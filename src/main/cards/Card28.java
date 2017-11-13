@@ -8,23 +8,23 @@ import main.Room;
 public class Card28 extends Card {
 
     Card28() {
-        imagePath = "main/Cards/cardm28.png";
-        reward = "1 Chip";
-        cardName = "Professor Englert";
+        super("Professor Englert", 3, 0, 0);
+    }
+
+    public boolean canPlay(Room room) {
+        return room == Room.CECS_CONFERENCE_ROOM;
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.CECS_CONFERENCE_ROOM)
-        {
-            processChipDialog(thisPlayer, new ChipDialog().showDialog(true, true, true));
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.discardCard(new CardDialog().display(thisPlayer));
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    protected void success(Player p) {
+        String chip = p.chooseChip();
+        setSuccessOutcome(p, "1 " + chip + " chip.");
+    }
 
+    @Override
+    protected void penalty(Player p) {
+        Card discard = new CardDialog().display(p);
+        p.discardCard(discard);
+        setFailOutcome(p, discard + ".");
     }
 }

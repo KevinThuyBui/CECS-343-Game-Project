@@ -1,31 +1,30 @@
 package main.cards;
 
+import main.CardDialog;
 import main.Player;
 import main.Room;
 
 public class Card29 extends Card {
 
     Card29() {
-        imagePath = "main/Cards/cardm29.png";
-        reward = "5 Quality Points and a Card";
-        cardName = "Soccer Goalie";
+        super("Soccer Goalie", 0, 3, 3);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.GEORGE_ALLEN_FIELD
-                && thisPlayer.getCraft() >= 3
-                && thisPlayer.getLearning() >= 3)
-        {
-            thisPlayer.offsetQuality(5);
-            thisPlayer.draw();
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.setRoom(Room.STUDENT_PARKING);
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.GEORGE_ALLEN_FIELD;
+    }
 
+    @Override
+    protected void success(Player p) {
+        p.offsetQuality(5);
+        p.drawCard();
+        setSuccessOutcome(p, "5 Quality Points and a card.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        p.setRoom(Room.STUDENT_PARKING);
+        outcome = p + " failed to play " + this + ", teleporting to Student Parking.";
     }
 }

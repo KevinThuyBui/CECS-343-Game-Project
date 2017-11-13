@@ -6,34 +6,24 @@ import main.ChipDialog;
 
 public class Card8 extends Card {
 
-    String oneUp;
-
     public Card8(){
-        cardName = "Enjoying the Peace";
-        location = "Japanese Gardens";
-        reward = "1 Integrity Chip";
-        imagePath = "main/Cards/cardm08.png";
+        super("Enjoying the Peace", 0, 0, 0);
     }
 
     @Override
-    public String getCardName() {
-        return cardName;
+    public boolean canPlay(Room room) {
+        return room == Room.JAPANESE_GARDEN;
     }
 
     @Override
-    public void play(Player thisPlayer)
-    {
-        if(thisPlayer.getRoom() == Room.JAPANESE_GARDEN){       //played in the Library
-            //if(thisPlayer.isUser()) {                        //ask player if this player is the user
-                ChipDialog chip = new ChipDialog();//open a dialog ask player to choose a learning chip or integrity chip with an action listener
-                oneUp = chip.showDialog(true, false, true);
-                processChipDialog( thisPlayer, oneUp);
-            //}
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else{
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    protected void success(Player p) {
+        String chip = p.chooseChip(true, false, true);
+        setSuccessOutcome(p, 1, chip);
+    }
+
+    @Override
+    protected void penalty(Player p) {
+
     }
 
 }

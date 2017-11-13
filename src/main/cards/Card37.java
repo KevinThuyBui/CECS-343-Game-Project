@@ -5,26 +5,25 @@ import main.Room;
 
 public class Card37 extends Card {
 
-    Card37()
-    {
-        cardName = "Enjoying Nature";
-        imagePath = "main/Cards/cardm37.png";
-        reward = "1 Craft Chip";
+    Card37() {
+        super("Enjoying Nature", 0, 0, 0);
+    }
+
+
+    @Override
+    public boolean canPlay(Room room) {
+        return room.outsideECS();
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom().outsideECS())
-        {
-            thisPlayer.offsetCraft(1);
-            thisPlayer.setRoom(Room.LACTATION_LOUNGE);
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    protected void success(Player p) {
+        p.offsetCraft(1);
+        p.setRoom(Room.LACTATION_LOUNGE);
+        setSuccessOutcome(p, "1 Craft and Teleports to the Lactation Lounge");
     }
 
+    @Override
+    protected void penalty(Player p) {
 
+    }
 }

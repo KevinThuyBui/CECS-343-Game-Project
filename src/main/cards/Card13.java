@@ -3,28 +3,29 @@ package main.cards;
 import main.Player;
 import main.Room;
 
-public class Card13 extends Card{
+public class Card13 extends Card {
 
     static String oneUp = "craft";
 
-    public Card13(){
-        cardName = "The Big Game";
-        location = "Pyrimad";
-        reward = "1 Craft Chip and Teleport to Lactation Lounge";
-        imagePath = "main/Cards/cardm13.png";
+    public Card13() {
+        super("The Big Game", 0, 0, 0);
     }
-
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom()== Room.PYRAMID) {
-            processChipDialog( thisPlayer, oneUp); //get 1 craft Chip
-            thisPlayer.setRoom(Room.LACTATION_LOUNGE); //sets player Room
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.PYRAMID;
     }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetCraft(1);
+        p.setRoom(Room.LACTATION_LOUNGE);
+        setSuccessOutcome(p, "1 Craft and Teleports to the Lactation Lounge");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+
+    }
+
 }

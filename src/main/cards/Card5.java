@@ -8,21 +8,22 @@ public class Card5 extends Card {
     static String oneUp = "craft";
 
     public Card5(){
-        cardName = "CECS 100";
-        location = "ECS 308";
-        reward = "1 Craft Token";
-        imagePath = "main/Cards/cardm05.png";
+        super("CECS 100", 0, 0, 0);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.ECS_308) {
-            processChipDialog( thisPlayer, oneUp);                                   //get 1 craft token
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.ECS_308;
+    }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetCraft(1);
+        setSuccessOutcome(p, "1 Craft Chip.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+
     }
 }

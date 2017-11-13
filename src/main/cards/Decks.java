@@ -41,27 +41,26 @@ public class Decks {
         drawingDeck.add(new Card21());
         drawingDeck.add(new Card20());
 
-//        drawingDeck.add(new Card19());
-//        drawingDeck.add(new Card18());
-//        drawingDeck.add(new Card17());
-//        drawingDeck.add(new Card16());
-//        drawingDeck.add(new Card15());
-//        drawingDeck.add(new Card14());
-//        drawingDeck.add(new Card13());
-//        drawingDeck.add(new Card12());
-//        drawingDeck.add(new Card11());
-//        drawingDeck.add(new Card10());
-//
-//        drawingDeck.add(new Card9());
-//        drawingDeck.add(new Card8());
-//        drawingDeck.add(new Card7());
-//        drawingDeck.add(new Card6());
-//        drawingDeck.add(new Card5());
-//        drawingDeck.add(new Card4());
-//        drawingDeck.add(new Card3());
-//        drawingDeck.add(new Card2());
-//        drawingDeck.add(new Card1());
-//
+        drawingDeck.add(new Card19());
+        drawingDeck.add(new Card18());
+        drawingDeck.add(new Card17());
+        drawingDeck.add(new Card16());
+        drawingDeck.add(new Card15());
+        drawingDeck.add(new Card14());
+        drawingDeck.add(new Card13());
+        drawingDeck.add(new Card12());
+        drawingDeck.add(new Card11());
+        drawingDeck.add(new Card10());
+
+        drawingDeck.add(new Card9());
+        drawingDeck.add(new Card8());
+        drawingDeck.add(new Card7());
+        drawingDeck.add(new Card6());
+        drawingDeck.add(new Card5());
+        drawingDeck.add(new Card4());
+        drawingDeck.add(new Card3());
+        drawingDeck.add(new Card2());
+        drawingDeck.add(new Card1());
 
         Collections.shuffle(drawingDeck);
     }

@@ -1,27 +1,27 @@
 package main.cards;
 
 import main.Player;
+import main.Room;
 
 public class Card6 extends Card {
 
-    static String oneUp = "integrity";
-
-    public Card6(){
-        cardName = "Exercising Mind and Body";
-        location = "Student Recreation";
-        reward = "1 Integrity Chip";
-        imagePath = "main/Cards/cardm06.png";
+    public Card6() {
+        super("Exercising Mind and Body", 0, 0, 0);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom().getName().equals(location)) {
-            processChipDialog( thisPlayer, oneUp);                                  //get 1 Integrity chip
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.REC_CENTER;
+    }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetIntegrity(1);
+        setSuccessOutcome(p, "1 Integrity Chip.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+
     }
 }

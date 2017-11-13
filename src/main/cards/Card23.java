@@ -8,25 +8,25 @@ import main.Room;
 public class Card23 extends Card {
 
     Card23() {
-        imagePath = "main/Cards/cardm23.png";
-        reward = "3 Quality Points and a Chip";
-        cardName = "A New Laptop";
+        super("A New Laptop", 4, 0, 0);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom() == Room.COMPUTER_LAB
-                && thisPlayer.getIntegrety() >= 4)
-        {
-            thisPlayer.offsetQuality(3);
-            processChipDialog(thisPlayer, new ChipDialog().showDialog(true, true, true));
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            thisPlayer.discardCard(new CardDialog().display(thisPlayer));
-            outcome = failedOutcomeString(thisPlayer.getName());
-        }
+    public boolean canPlay(Room room) {
+        return room == Room.COMPUTER_LAB;
+    }
 
+    @Override
+    protected void success(Player p) {
+        p.offsetQuality(3);
+        String chip = p.chooseChip();
+        setSuccessOutcome(p, "3 Quality Points and 1 " + chip + " chip.");
+    }
+
+    @Override
+    protected void penalty(Player p) {
+        Card discard = new CardDialog().display(p);
+        p.discardCard(discard);
+        setFailOutcome(p, discard + ".");
     }
 }

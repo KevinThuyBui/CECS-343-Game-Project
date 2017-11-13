@@ -8,32 +8,30 @@ public class Card9 extends Card {
 
     static String oneUp = "learning";
 
-    public Card9(){
-        cardName = "Parking Violation";
-        location = "Forbidden Parking";
-        reward = "1 Knowledge Token and/or Discarded 1 game card for 1 Knowledge Token";
-        imagePath = "main/Cards/cardm09.png";
+    public Card9() {
+        super("Parking Violation", 0, 0, 0);
     }
 
     @Override
-    public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom()==Room.FORBIDDEN_PARKING) {
-            processChipDialog( thisPlayer, oneUp);   //get 1 learning chip
-            //if(thisPlayer.isUser())
-            //{
-             //   int alert = JOptionPane.showConfirmDialog(null,"Trade 1 game card for 1 knolege token", "Choose", 0); //tells the player if they would like to trade 1 card for 1 knowledge chip
-             //   if (alert==0)
-             //   {
-                    thisPlayer.discardCard(new CardDialog().display(thisPlayer));
-                    processChipDialog( thisPlayer, oneUp);
-             //   }
-            //}
-            outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
-            outcome = failedOutcomeString(thisPlayer.getName());
+    public boolean canPlay(Room room) {
+        return room == Room.FORBIDDEN_PARKING;
+    }
+
+    @Override
+    protected void success(Player p) {
+        p.offsetLearning(1);
+        if (!p.getHand().isEmpty()) {
+            Card card = new CardDialog().display(p);
+            p.discardCard(card);
+            p.offsetLearning(1);
+            setSuccessOutcome(p, "2 Learning Chips and discard " + card.getCardName() + ".");
+        } else {
+            setSuccessOutcome(p, 1, "Learning");
         }
     }
 
+    @Override
+    protected void penalty(Player p) {
+
+    }
 }

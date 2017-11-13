@@ -11,7 +11,7 @@ public interface Player {
     //set player to room attributes
     Point getPoint();
 
-    int getIntegrety();
+    int getIntegrity();
 
     int getCraft();
 
@@ -33,7 +33,13 @@ public interface Player {
 
     List<Card> getHand();
 
-    void draw();
+    void drawCard();
 
     void discardCard(Card display);
+
+    default String chooseChip() {
+        return chooseChip(true, true, true);
+    }
+
+    String chooseChip(boolean learning, boolean craft, boolean integrity);
 }
