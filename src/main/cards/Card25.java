@@ -14,7 +14,7 @@ public class Card25 extends Card {
 
     @Override
     public boolean canPlay(Room room) {
-        return room == Room.COMPUTER_LAB;
+        return room == Room.LACTATION_LOUNGE;
     }
 
     @Override

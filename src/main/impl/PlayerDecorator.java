@@ -91,11 +91,6 @@ public abstract class PlayerDecorator implements Player {
     }
 
     @Override
-    public String chooseChip() {
-        return player.chooseChip();
-    }
-
-    @Override
     public String chooseChip(boolean learning, boolean craft, boolean integrity) {
         return player.chooseChip(learning, craft, integrity);
     }

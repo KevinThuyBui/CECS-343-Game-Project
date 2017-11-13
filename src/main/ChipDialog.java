@@ -36,6 +36,7 @@ public class ChipDialog extends JDialog {
         learningButton.setEnabled(learningButtonOn);
         craftButton.setEnabled(craftButtonOn);
         integrityButton.setEnabled(integrityButtonOn);
+        pack();
         setVisible(true);
 
         return buttonPressed;

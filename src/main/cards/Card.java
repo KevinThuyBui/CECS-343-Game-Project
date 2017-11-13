@@ -23,6 +23,7 @@ public abstract class Card {
     }
 
     public void useOn(Player player) {
+        player.discardCard(this);
         if (canPlay(player.getRoom())) {
             if (statisfiesRequirement(player)) {
                 success(player);
@@ -33,7 +34,6 @@ public abstract class Card {
             player.offsetQuality(-2);
             setFailOutcome(player, "2 Quality Points.");
         }
-        player.discardCard(this);
     }
 
     public boolean statisfiesRequirement(Player p) {
@@ -53,7 +53,7 @@ public abstract class Card {
     }
 
     protected void setSuccessOutcome(Player p, String reward) {
-        outcome = p + " played " + cardName + "to gain " + reward;
+        outcome = p + " played " + cardName + " to gain " + reward;
     }
 
     protected void setSuccessOutcome(Player p, int i, String stat) {

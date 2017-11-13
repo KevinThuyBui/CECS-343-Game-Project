@@ -18,7 +18,7 @@ public class Card32 extends Card {
 
     @Override
     protected void success(Player p) {
-        String chip = p.chooseChip(true, true, false);
+        String chip = p.chooseChip();
         setSuccessOutcome(p, 1, chip);
     }
 
