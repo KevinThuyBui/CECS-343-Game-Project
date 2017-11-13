@@ -55,9 +55,9 @@ class PlayerController {
     {
         final List<Integer> randomList = Arrays.asList(0, 1, 2);
         Collections.shuffle(randomList);
-        players[randomList.get(0)] = new PlayerImpl("Jack", Room.ECS_308, 0, 0, 0, 0);
-        players[randomList.get(1)] = new PlayerImpl("Lemon", Room.ECS_308, 0, 0, 0, 0);
-        players[randomList.get(2)] = new PlayerImpl("Romulus", Room.ECS_308, 0, 0, 0, 0);
+        players[randomList.get(0)] = new PlayerImpl("Jack", Room.ECS_308, 2, 2, 2, 0);
+        players[randomList.get(1)] = new PlayerImpl("Lemon", Room.ECS_308, 3, 1, 2, 0);
+        players[randomList.get(2)] = new PlayerImpl("Romulus", Room.ECS_308, 0, 3, 3, 0);
 
         for (Player player : players)
         {

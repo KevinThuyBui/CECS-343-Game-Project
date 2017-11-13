@@ -113,7 +113,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public String toString() {
-        return String.format("%6s %6d %6d %6d %6d %s", name, integrety, craft, learning, quality, currentRoom);
+        return name;
     }
 
     public List<Card> getHand() {

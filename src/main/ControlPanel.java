@@ -6,6 +6,7 @@ import main.cards.Decks;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
+import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -145,6 +146,8 @@ public class ControlPanel extends JPanel {
                     card.play(player);
                     setPlayCardEnabled(false);
                     displayPanel.updateInfo();
+                    displayPanel.appendConsole(card.getOutcome());
+                    cardPanel.setCardIndex(0);
                     break;
                 case "End Turn":
                     setDrawCardEnabled(false);
@@ -210,6 +213,17 @@ public class ControlPanel extends JPanel {
             sb.append("\n");
             sb.append("TURN: ").append(player.getName()).append(" in ").append(player.getRoom());
             info.setText(sb.toString());
+        }
+
+        void appendConsole(String text) {
+            if (console.getLineCount() == 3) {
+                try {
+                    console.replaceRange("", 0, console.getLineEndOffset(0));
+                } catch (BadLocationException e) {
+                    e.printStackTrace();
+                }
+            }
+            console.append("\n" + text);
         }
     }
 
