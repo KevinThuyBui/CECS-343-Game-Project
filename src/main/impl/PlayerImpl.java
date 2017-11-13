@@ -31,6 +31,7 @@ public class PlayerImpl implements Player {
     private int craft;
     private int learning;
     private int quality;
+    private boolean isUser;
 
     private ArrayList<Card> userHand;
 
@@ -40,7 +41,8 @@ public class PlayerImpl implements Player {
         this.integrety = integrety;
         this.craft = craft;
         this.learning = learning;
-        this.quality = quality;
+
+        userHand = new ArrayList<>();
     }
 
     @Override
@@ -101,7 +103,6 @@ public class PlayerImpl implements Player {
         this.currentRoom = currentRoom;
     }
 
-    @Override
     public void discardCard(Card display) {
         if (userHand.contains(display))
         {

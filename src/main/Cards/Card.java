@@ -1,6 +1,7 @@
 package main.Cards;
 
 import main.Player;
+import main.Room;
 
 public abstract class Card {
     String cardName;
@@ -20,7 +21,7 @@ public abstract class Card {
         return filePath;
     }
 
-    abstract void play(Player thisPlayer);
+    public abstract void play(Player thisPlayer);
 
     public String failedOutcomeString(String playerName)
     {
@@ -31,4 +32,26 @@ public abstract class Card {
     {
         return playerName + " was awarded " + reward + " for playing " + cardName;
     }
+
+    public String getOutcome()
+    {
+        return outcome;
+    }
+
+    void processChipDialog(Player player, String displayOutcome)
+    {
+        switch (displayOutcome) {
+            case "integrity":
+                player.offsetIntegrity(1);
+                break;
+            case "craft":
+                player.offsetCraft(1);
+                break;
+            default:
+                player.offsetLearning(1);
+                break;
+        }
+    }
+
+
 }

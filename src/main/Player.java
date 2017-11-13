@@ -3,6 +3,7 @@ package main;
 import main.Cards.Card;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public interface Player {
     String getName();
@@ -30,7 +31,9 @@ public interface Player {
 
     void setRoom(Room currentRoom);
 
-    void discardCard(Card display);
+    ArrayList<Card> getUserHand();
 
     void draw();
+
+    void discardCard(Card display);
 }

@@ -1,5 +1,6 @@
 package main.impl;
 
+import main.Cards.Card;
 import main.Player;
 import main.Room;
 
@@ -7,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class DrawablePlayer implements Player {
     private final Player player;
@@ -97,5 +99,20 @@ public class DrawablePlayer implements Player {
                 }
             }
         }).start();
+    }
+
+    @Override
+    public ArrayList<Card> getUserHand() {
+        return player.getUserHand();
+    }
+
+    @Override
+    public void draw() {
+        player.draw();
+    }
+
+    @Override
+    public void discardCard(Card display) {
+        player.discardCard(display);
     }
 }
