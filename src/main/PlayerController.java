@@ -16,7 +16,7 @@ class PlayerController {
 
     private final Player[] players;
 
-    private int currentPlayer = 0;
+    private int currentPlayer = -1;
     private ControlPanel controlPanel;
 
     PlayerController() {
@@ -43,6 +43,7 @@ class PlayerController {
 
     void nextTurn() {
         currentPlayer = (currentPlayer + 1) % 3;
+        controlPanel.updateInfo();
         if (currentPlayer != 0) {
             beginComputerTurn();
         } else {
@@ -73,7 +74,6 @@ class PlayerController {
 
 
     private void beginComputerTurn() {
-        controlPanel.setMoveEnabled(false);
         controlPanel.setRooms(new Room[0]);
         final Timer timer = new Timer(500, e -> {
             Room[] adjacentRooms = getCurrentPlayer().getRoom().getAdjacentRooms();
@@ -87,7 +87,7 @@ class PlayerController {
 
     private void beginPlayerTurn() {
         controlPanel.setDrawCardEnabled(true);
-        controlPanel.setMoveEnabled(false);
+        controlPanel.setEndTurnEnabled(true);
         controlPanel.setRooms(getCurrentPlayer().getRoom().getAdjacentRooms());
     }
 

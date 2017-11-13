@@ -7,7 +7,7 @@ public class Card0 extends Card {
 
     static String oneUp = "learning";
 
-    public Card0(){
+    public Card0() {
         cardName = "CECS 100";
         location = "CECS 302 or CECS 308";
         reward = "1 Learning Chip";
@@ -17,12 +17,10 @@ public class Card0 extends Card {
 
     @Override
     public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom()== Room.ECS_302 | thisPlayer.getRoom() == Room.ECS_308) {
-            processChipDialog( thisPlayer, oneUp);                                 //get 1 learning Chip
+        if (thisPlayer.getRoom() == Room.ECS_302 | thisPlayer.getRoom() == Room.ECS_308) {
+            processChipDialog(thisPlayer, oneUp);                                 //get 1 learning Chip
             outcome = successfulOutcomeString(thisPlayer.getName());
-        }
-        else
-        {
+        } else {
             outcome = failedOutcomeString(thisPlayer.getName());
         }
     }

@@ -52,8 +52,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public Point getPoint()
-    {
+    public Point getPoint() {
         return currentRoom.getDrawPosition();
     }
 
@@ -76,14 +75,17 @@ public class PlayerImpl implements Player {
     public int getQuality() {
         return quality;
     }
+
     @Override
     public void offsetLearning(int value) {
         learning += value;
     }
+
     @Override
     public void offsetCraft(int value) {
         craft += value;
     }
+
     @Override
     public void offsetIntegrity(int value) {
         integrety += value;
@@ -104,12 +106,9 @@ public class PlayerImpl implements Player {
         this.currentRoom = currentRoom;
     }
 
-    public void discardCard(Card display) {
-        if (hand.contains(display))
-        {
-            hand.remove(display);
-            Decks.getInstance().addToDiscard(display);
-        }
+    public void discardCard(Card card) {
+        if (hand.remove(card))
+            Decks.getInstance().addToDiscard(card);
     }
 
     @Override
@@ -122,7 +121,7 @@ public class PlayerImpl implements Player {
     }
 
     public void draw() {
-        this.hand.add(Decks.getInstance().drawCard());
+        this.hand.add(0, Decks.getInstance().drawCard());
     }
 }
 

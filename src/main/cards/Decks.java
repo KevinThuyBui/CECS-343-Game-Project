@@ -66,24 +66,27 @@ public class Decks {
         Collections.shuffle(drawingDeck);
     }
 
-    public Card drawCard()
-    {
+    public Card drawCard() {
         if (drawingDeck.isEmpty())
             reshuffleDeck();
-        Card card = drawingDeck.get(0);
-        drawingDeck.remove(0);
-        return card;
+        return drawingDeck.remove(0);
     }
 
-    public void addToDiscard (Card discardedCard)
-    {
+    public void addToDiscard(Card discardedCard) {
         discardDeck.add(discardedCard);
     }
 
-    private void reshuffleDeck()
-    {
+    private void reshuffleDeck() {
         Collections.shuffle(discardDeck);
         drawingDeck = discardDeck;
         discardDeck = new ArrayList<>();
+    }
+
+    public int drawCount() {
+        return drawingDeck.size();
+    }
+
+    public int discardCount() {
+        return discardDeck.size();
     }
 }

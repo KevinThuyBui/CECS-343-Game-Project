@@ -14,7 +14,6 @@ public class MainView extends JFrame {
 			public void run() {
 				try {
 					MainView frame = new MainView();
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,29 +38,19 @@ public class MainView extends JFrame {
 
         //Create a PlayerController to store player positions
         playerState = new PlayerController();
-        controlPanel = new ControlPanel(playerState.getPlayers());
-        playerState.setControlPanel(controlPanel);
         //Create a MapScrollPane for game map
         MapScrollPane map = new MapScrollPane();
         map.initializePlayerTokens(playerState);
 
+        //Create a panel to hold the player information and interactions below
+        controlPanel = new ControlPanel(playerState);
+        playerState.setControlPanel(controlPanel);
+
         getContentPane().add(map, BorderLayout.CENTER);
 
-        //Create a panel to hold the player information and interactions below
-        controlPanel.setRooms(playerState.getCurrentPlayer().getRoom().getAdjacentRooms());
-        controlPanel.addMoveListener(new MoveListener());
         getContentPane().add(controlPanel, BorderLayout.SOUTH);
-
-
-    }
-
-    private class MoveListener implements RoomMoveListener {
-
-        @Override
-        public void onMove(Room room) {
-            playerState.getCurrentPlayer().setRoom(room);
-            playerState.nextTurn();
-        }
+        setVisible(true);
+        playerState.nextTurn();
     }
 
 }

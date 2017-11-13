@@ -111,7 +111,12 @@ public class DrawablePlayer implements Player {
     }
 
     @Override
-    public void discardCard(Card display) {
-        player.discardCard(display);
+    public void discardCard(Card card) {
+        player.discardCard(card);
+    }
+
+    @Override
+    public String toString() {
+        return player.toString();
     }
 }
