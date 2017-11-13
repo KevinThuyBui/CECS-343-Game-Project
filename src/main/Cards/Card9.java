@@ -22,16 +22,16 @@ public class Card9 extends Card {
     @Override
     public void play(Player thisPlayer) {
         if (thisPlayer.getRoom()==Room.FORBIDDEN_PARKING) {
-            processChipDisplay( thisPlayer, oneUp);   //get 1 learning chip
-            if(thisPlayer.isUser())
-            {
-                int alert = JOptionPane.showConfirmDialog(null,"Trade 1 game card for 1 knolege token", "Choose", 0);
-                if (alert==0)
-                {
+            processChipDialog( thisPlayer, oneUp);   //get 1 learning chip
+            //if(thisPlayer.isUser())
+            //{
+             //   int alert = JOptionPane.showConfirmDialog(null,"Trade 1 game card for 1 knolege token", "Choose", 0); //tells the player if they would like to trade 1 card for 1 knowledge chip
+             //   if (alert==0)
+             //   {
                     thisPlayer.discardCard(new CardDialog().display(thisPlayer));
-                    processChipDisplay( thisPlayer, oneUp);
-                }
-            }
+                    processChipDialog( thisPlayer, oneUp);
+             //   }
+            //}
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else

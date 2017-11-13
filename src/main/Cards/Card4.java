@@ -17,7 +17,7 @@ public class Card4 extends Card {
     @Override
     public void play(Player thisPlayer) {
         if (thisPlayer.getRoom() == Room.ECS_302) {
-            processChipDisplay( thisPlayer, oneUp);                                 //get 1 learning Chip
+            processChipDialog( thisPlayer, oneUp);                                 //get 1 learning Chip
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else

@@ -24,11 +24,11 @@ public class Card8 extends Card {
     public void play(Player thisPlayer)
     {
         if(thisPlayer.getRoom() == Room.JAPANESE_GARDEN){       //played in the Library
-            if(thisPlayer.isUser()) {                        //ask player if this player is the user
+            //if(thisPlayer.isUser()) {                        //ask player if this player is the user
                 ChipDialog chip = new ChipDialog();//open a dialog ask player to choose a learning chip or integrity chip with an action listener
                 oneUp = chip.showDialog(true, false, true);
-                processChipDisplay( thisPlayer, oneUp);
-            }
+                processChipDialog( thisPlayer, oneUp);
+            //}
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else{

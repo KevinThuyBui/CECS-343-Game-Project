@@ -8,7 +8,7 @@ public class Card11 extends Card {
 
     String oneUp;
 
-    public Card1(){
+    public Card11(){
         this.cardName = "Buddy Up";
         this.location = "EAT Room or George Allen Field";
         this.reward = "1 Learning or 1 Craft chip";
@@ -19,11 +19,11 @@ public class Card11 extends Card {
     public void play(Player thisPlayer)
     {
         if(thisPlayer.getRoom() == Room.EAT_CLUB || thisPlayer.getRoom() == Room.GEORGE_ALLEN_FIELD){       //played in the Library
-            if(thisPlayer.isUser()) {                        //ask player if this player is the user
+            //if(thisPlayer.isUser()) {                        //ask player if this player is the user
                 ChipDialog chip = new ChipDialog();
                 oneUp = chip.showDialog(true, true, false); // open a dialog ask player to choose a learning chip or integrity chip with an action listener
-                processChipDisplay( thisPlayer, oneUp);
-            }
+                processChipDialog( thisPlayer, oneUp);
+            //}
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else{

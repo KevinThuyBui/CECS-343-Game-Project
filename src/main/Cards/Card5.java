@@ -17,7 +17,7 @@ public class Card5 extends Card {
     @Override
     public void play(Player thisPlayer) {
         if (thisPlayer.getRoom() == Room.ECS_308) {
-            processChipDisplay( thisPlayer, oneUp);                                   //get 1 craft token
+            processChipDialog( thisPlayer, oneUp);                                   //get 1 craft token
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else

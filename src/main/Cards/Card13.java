@@ -3,21 +3,21 @@ package main.Cards;
 import main.Player;
 import main.Room;
 
-public class Card12 extends Card {
+public class Card13 extends Card{
 
     static String oneUp = "craft";
 
-    public Card12(){
-        cardName = "Late for Class";
-        location = "Any space other than Forbidden Parking";
-        reward = "1 Craft Chip";
-        filePath = "main/Cards/cardm12.png";
+    public Card13(){
+        cardName = "The Big Game";
+        location = "Pyrimad";
+        reward = "1 Craft Chip and Teleport to Lactation Lounge";
+        filePath = "main/Cards/cardm13.png";
     }
 
 
     @Override
     public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom()!= Room.FORBIDDEN_PARKING) {
+        if (thisPlayer.getRoom()== Room.PYRAMID) {
             processChipDialog( thisPlayer, oneUp); //get 1 craft Chip
             thisPlayer.setRoom(Room.LACTATION_LOUNGE); //sets player Room
             outcome = successfulOutcomeString(thisPlayer.getName());

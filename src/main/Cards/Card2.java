@@ -17,7 +17,7 @@ public class Card2 extends Card {
     @Override
     public void play(Player thisPlayer) {
         if (thisPlayer.getRoom()== Room.BRATWURST_HALL) {           //played at Bratwurst Hall
-            processChipDisplay( thisPlayer, oneUp);     //get 1 Craft Chip
+            processChipDialog( thisPlayer, oneUp);     //get 1 Craft Chip
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else{

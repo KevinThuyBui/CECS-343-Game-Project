@@ -20,11 +20,11 @@ public class Card1 extends Card {
     public void play(Player thisPlayer)
     {
         if(thisPlayer.getRoom() == Room.LIBRARY){       //played in the Library
-            if(thisPlayer.isUser()) {                        //ask player if this player is the user
+            //if(thisPlayer.isUser()) {                        //ask player if this player is the user
                ChipDialog chip = new ChipDialog();
                oneUp = chip.showDialog(true, false, true); // open a dialog ask player to choose a learning chip or integrity chip with an action listener
-                processChipDisplay( thisPlayer, oneUp);
-            }
+                processChipDialog( thisPlayer, oneUp);
+            //}
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else{

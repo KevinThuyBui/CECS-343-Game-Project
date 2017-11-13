@@ -17,7 +17,7 @@ public class Card7 extends Card {
     @Override
     public void play(Player thisPlayer) {
         if (thisPlayer.getRoom()== Room.ELEVATORS) {
-            processChipDisplay( thisPlayer, oneUp);                                  //get 1 Integrity chip
+            processChipDialog( thisPlayer, oneUp);                                  //get 1 Integrity chip
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else
