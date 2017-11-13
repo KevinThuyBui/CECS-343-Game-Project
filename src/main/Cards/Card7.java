@@ -1,29 +1,28 @@
 package main.Cards;
 
 import main.Player;
+import main.Room;
 
 public class Card7 extends Card {
+
+    static String oneUp = "integrity";
 
     public Card7(){
         cardName = "Finding the Lab";
         location = "Elevators";
         reward = "1 Integrity Chip";
+        filePath = "main/Cards/cardm07.png";
     }
 
     @Override
     public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom().getName().equals(location)) {
-            thisPlayer.offsetIntegrity( 1);                                  //get 1 Integrity chip
-            outcome = thisPlayer.getName() + " was awarded " + reward;
+        if (thisPlayer.getRoom()== Room.ELEVATORS) {
+            processChipDisplay( thisPlayer, oneUp);                                  //get 1 Integrity chip
+            outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else
         {
-            outcome = thisPlayer.getName() + " was unabled to play: " + cardName;
+            outcome = failedOutcomeString(thisPlayer.getName());
         }
-    }
-
-    @Override
-    public String toString() {
-        return outcome;
     }
 }

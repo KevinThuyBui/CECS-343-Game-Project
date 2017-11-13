@@ -1,31 +1,29 @@
 package main.Cards;
 
 import main.Player;
+import main.Room;
 
 public class Card0 extends Card {
 
+    static String oneUp = "learning";
+
     public Card0(){
-        cardName = "CECS 105";
-        location = "CECS 302";
-        location1 = "CECS 308";
+        cardName = "CECS 100";
+        location = "CECS 302 or CECS 308";
         reward = "1 Learning Chip";
+        filePath = "main/Cards/cardm00.png";
     }
 
 
     @Override
     public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom().getName().equals(location) | thisPlayer.getRoom().getName().equals(location1)) {
-            thisPlayer.offsetLearning( 1);                                  //get 1 learning Chip
+        if (thisPlayer.getRoom()== Room.ECS_302 | thisPlayer.getRoom() == Room.ECS_308) {
+            processChipDisplay( thisPlayer, oneUp);                                 //get 1 learning Chip
             outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else
         {
             outcome = failedOutcomeString(thisPlayer.getName());
         }
-    }
-
-    @Override
-    public String toString() {
-        return outcome;
     }
 }

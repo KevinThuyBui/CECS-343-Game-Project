@@ -1,29 +1,28 @@
 package main.Cards;
 
 import main.Player;
+import main.Room;
 
 public class Card3 extends Card {
+
+    static String oneUp = "learning";
 
     public Card3(){
         cardName = "Research Compilers";
         location = "Library";
         reward = "1 Learning Chip";
+        filePath = "main/Cards/cardm03.png";
     }
 
     @Override
     public void play(Player thisPlayer) {
-        if (thisPlayer.getRoom().getName().equals(location)) {
-            thisPlayer.offsetLearning( 1);                                  //get 1 learning Chip
-            outcome = thisPlayer.getName() + " was awarded " + reward;
+        if (thisPlayer.getRoom() == Room.LIBRARY) {
+            processChipDisplay( thisPlayer, oneUp);                                 //get 1 learning Chip
+            outcome = successfulOutcomeString(thisPlayer.getName());
         }
         else
         {
-            outcome = thisPlayer.getName() + " was unabled to play: " + cardName;
+            outcome = failedOutcomeString(thisPlayer.getName());
         }
-    }
-
-    @Override
-    public String toString() {
-        return outcome;
     }
 }
