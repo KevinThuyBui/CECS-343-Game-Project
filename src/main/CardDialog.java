@@ -36,6 +36,25 @@ public class CardDialog extends JDialog {
     }
 
 
+    public Card display(Player user, Card playedCard)
+    {
+        ButtonGroup cardSelection = new ButtonGroup();
+        for (Card card : user.getHand())
+        {
+            if (card != playedCard) {
+                CardButton cardButton = new CardButton(card);
+                buttonPanel.add(cardButton);
+                cardSelection.add(cardButton);
+                cardButton.addActionListener(new CardActionListener());
+            }
+        }
+
+        pack();
+        setVisible(true);
+
+        return selectedCard;
+    }
+
     public Card display(Player user)
     {
         ButtonGroup cardSelection = new ButtonGroup();
