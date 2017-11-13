@@ -145,6 +145,7 @@ public class ControlPanel extends JPanel {
                     Card card = player.getHand().get(cardPanel.cardIndex);
                     card.play(player);
                     setPlayCardEnabled(false);
+                    setEndTurnEnabled(true);
                     displayPanel.updateInfo();
                     displayPanel.appendConsole(card.getOutcome());
                     cardPanel.setCardIndex(0);
@@ -154,6 +155,9 @@ public class ControlPanel extends JPanel {
                     setMoveEnabled(false);
                     setPlayCardEnabled(false);
                     setEndTurnEnabled(false);
+                    while (player.getHand().size() > 7) {
+                        player.discardCard(new CardDialog().display(player));
+                    }
                     controller.nextTurn();
             }
         }

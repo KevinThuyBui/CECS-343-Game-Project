@@ -87,7 +87,6 @@ class PlayerController {
 
     private void beginPlayerTurn() {
         controlPanel.setDrawCardEnabled(true);
-        controlPanel.setEndTurnEnabled(true);
         controlPanel.setRooms(getCurrentPlayer().getRoom().getAdjacentRooms());
     }
 
