@@ -1,9 +1,9 @@
 package main;
 
-import main.Cards.Card;
+import main.cards.Card;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface Player {
     String getName();
@@ -31,7 +31,7 @@ public interface Player {
 
     void setRoom(Room currentRoom);
 
-    ArrayList<Card> getUserHand();
+    List<Card> getHand();
 
     void draw();
 

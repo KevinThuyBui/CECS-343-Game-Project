@@ -1,25 +1,35 @@
 package main;
 
+import main.cards.Card;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ControlPanel extends JPanel {
 
     private final MovePanel movePanel;
     private final PlayerPanel playerPanel;
+    private final CardPanel cardPanel;
+    private final Player[] players;
     private RoomMoveListener listener;
 
-    public ControlPanel() {
+    public ControlPanel(Player[] players) {
+        this.players = players;
         setMinimumSize(new Dimension(200, 2000));
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
         movePanel = new MovePanel(this);
         playerPanel = new PlayerPanel();
+        cardPanel = new CardPanel(players[0]);
         add(Box.createHorizontalStrut(5));
         add(movePanel);
-        add(Box.createHorizontalStrut(250));
+        add(Box.createHorizontalStrut(5));
+        add(cardPanel);
+        add(Box.createHorizontalStrut(5));
         add(playerPanel);
         add(Box.createHorizontalStrut(5));
     }
@@ -40,13 +50,17 @@ public class ControlPanel extends JPanel {
         movePanel.setMoveEnabled(isEnabled);
     }
 
-    public static class MovePanel extends JPanel implements ActionListener {
+    public void setDrawCardEnabled(boolean drawCardEnabled) {
+        cardPanel.setDrawCardEnabled(drawCardEnabled);
+    }
+
+    private static class MovePanel extends JPanel implements ActionListener {
 
         private final JButton move;
         private final ControlPanel panel;
         private final JList<Room> list;
 
-        public MovePanel(ControlPanel panel) {
+        MovePanel(ControlPanel panel) {
             this.panel = panel;
             setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
             list = new JList<>();
@@ -66,7 +80,7 @@ public class ControlPanel extends JPanel {
             add(list);
         }
 
-        public void setRooms(Room[] rooms) {
+        void setRooms(Room[] rooms) {
             list.setListData(rooms);
         }
 
@@ -76,13 +90,13 @@ public class ControlPanel extends JPanel {
             if (selectedRoom != null) panel.notifyMove(selectedRoom);
         }
 
-        public void setMoveEnabled(boolean isEnabled) {
+        void setMoveEnabled(boolean isEnabled) {
             move.setEnabled(isEnabled);
         }
     }
 
     public static class PlayerPanel extends JPanel {
-        public PlayerPanel() {
+        PlayerPanel() {
             setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
             JTextArea info = new JTextArea();
             info.setEditable(false);
@@ -99,6 +113,56 @@ public class ControlPanel extends JPanel {
             add(info);
             add(Box.createVerticalStrut(10));
             add(console);
+        }
+    }
+
+    private static class CardPanel extends JPanel {
+
+        private final JButton cardImage;
+
+        private final Player player;
+        private int cardIndex;
+
+        CardPanel(Player user) {
+            player = user;
+            setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+            cardImage = new JButton();
+            cardImage.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    offsetCardIndex(1);
+                }
+            });
+
+            add(cardImage);
+            setCardIndex(0);
+        }
+
+        public void setCardIndex(int cardIndex) {
+            this.cardIndex = cardIndex;
+            changeImage();
+        }
+
+        public void offsetCardIndex(int offset) {
+            this.cardIndex += offset;
+            changeImage();
+        }
+
+        private void changeImage() {
+            List<Card> hand = player.getHand();
+            if (!hand.isEmpty()) {
+                if (cardIndex >= hand.size()) {
+                    cardIndex %= hand.size();
+                }
+                Card card = hand.get(cardIndex);
+                cardImage.setIcon(new ImageIcon(Card.getImageURL(card)));
+            } else {
+                cardImage.setIcon(null);
+            }
+        }
+
+        public void setDrawCardEnabled(boolean drawCardEnabled) {
+
         }
     }
 }

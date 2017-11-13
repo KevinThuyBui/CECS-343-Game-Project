@@ -38,9 +38,9 @@ public class MainView extends JFrame {
         setContentPane(contentPane);
 
         //Create a PlayerController to store player positions
-        controlPanel = new ControlPanel();
-        playerState = new PlayerController(controlPanel);
-
+        playerState = new PlayerController();
+        controlPanel = new ControlPanel(playerState.getPlayers());
+        playerState.setControlPanel(controlPanel);
         //Create a MapScrollPane for game map
         MapScrollPane map = new MapScrollPane();
         map.initializePlayerTokens(playerState);
@@ -61,7 +61,6 @@ public class MainView extends JFrame {
         public void onMove(Room room) {
             playerState.getCurrentPlayer().setRoom(room);
             playerState.nextTurn();
-
         }
     }
 

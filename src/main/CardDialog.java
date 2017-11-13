@@ -1,12 +1,13 @@
 package main;
 
-import main.Cards.Card;
-import main.impl.PlayerImpl;
+import main.cards.Card;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class CardDialog extends JDialog {
     private JPanel buttonPanel;
@@ -37,15 +38,13 @@ public class CardDialog extends JDialog {
     public Card display(Player user)
     {
         ButtonGroup cardSelection = new ButtonGroup();
-        for (Card card : user.getUserHand())
+        for (Card card : user.getHand())
         {
             CardButton cardButton = new CardButton(card);
             buttonPanel.add(cardButton);
             cardSelection.add(cardButton);
             cardButton.addActionListener(new CardActionListener());
-
         }
-
 
         pack();
         setVisible(true);
@@ -60,5 +59,21 @@ public class CardDialog extends JDialog {
             CardButton pressedButton = (CardButton) e.getSource();
             selectedCard = pressedButton.getCard();
         }
+    }
+
+    public static class CardButton extends JToggleButton{
+        private Card inputCard;
+        public CardButton(Card inputCard) {
+            super();
+            this.inputCard = inputCard;
+            setIcon(new ImageIcon(Card.getImageURL(inputCard)));
+        }
+
+
+        public Card getCard()
+        {
+            return inputCard;
+        }
+
     }
 }

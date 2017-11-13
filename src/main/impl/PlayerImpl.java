@@ -13,17 +13,19 @@ package main.impl;/*    Copyright 2017 Ton Ly
   limitations under the License.
 */
 
-import main.Cards.Card;
-import main.Cards.Decks;
+import main.cards.Card;
+import main.cards.Decks;
 import main.Player;
 import main.Room;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerImpl implements Player {
 
     private final String name;
+    private final List<Card> hand;
 
     private Room currentRoom;
 
@@ -33,7 +35,6 @@ public class PlayerImpl implements Player {
     private int quality;
     private boolean isUser;
 
-    private ArrayList<Card> userHand;
 
     public PlayerImpl(String name, Room currentRoom, int integrety, int craft, int learning, int quality) {
         this.name = name;
@@ -42,7 +43,7 @@ public class PlayerImpl implements Player {
         this.craft = craft;
         this.learning = learning;
 
-        userHand = new ArrayList<>();
+        hand = new ArrayList<>();
     }
 
     @Override
@@ -104,9 +105,9 @@ public class PlayerImpl implements Player {
     }
 
     public void discardCard(Card display) {
-        if (userHand.contains(display))
+        if (hand.contains(display))
         {
-            userHand.remove(display);
+            hand.remove(display);
             Decks.getInstance().addToDiscard(display);
         }
     }
@@ -116,12 +117,12 @@ public class PlayerImpl implements Player {
         return String.format("%6s %6d %6d %6d %6d %s", name, integrety, craft, learning, quality, currentRoom);
     }
 
-    public ArrayList<Card> getUserHand() {
-        return userHand;
+    public List<Card> getHand() {
+        return hand;
     }
 
     public void draw() {
-        this.userHand.add(Decks.getInstance().drawCard());
+        this.hand.add(Decks.getInstance().drawCard());
     }
 }
 

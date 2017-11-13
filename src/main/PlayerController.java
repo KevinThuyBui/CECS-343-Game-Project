@@ -17,11 +17,9 @@ class PlayerController {
     private final Player[] players;
 
     private int currentPlayer = 0;
-    private final ControlPanel controlPanel;
+    private ControlPanel controlPanel;
 
-    PlayerController(ControlPanel controlPanel) {
-        this.controlPanel = controlPanel;
-
+    PlayerController() {
         players = new Player[PLAYER_COUNT];
         randomizePlayers(players);
     }
@@ -88,7 +86,12 @@ class PlayerController {
 
 
     private void beginPlayerTurn() {
-        controlPanel.setMoveEnabled(true);
+        controlPanel.setDrawCardEnabled(true);
+        controlPanel.setMoveEnabled(false);
         controlPanel.setRooms(getCurrentPlayer().getRoom().getAdjacentRooms());
+    }
+
+    public void setControlPanel(ControlPanel controlPanel) {
+        this.controlPanel = controlPanel;
     }
 }
