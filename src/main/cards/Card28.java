@@ -22,7 +22,7 @@ public class Card28 extends Card {
         }
         else
         {
-            thisPlayer.discardCard(new CardDialog().display(thisPlayer));
+            thisPlayer.discardCard(new CardDialog().display(thisPlayer, this));
             outcome = failedOutcomeString(thisPlayer.getName());
         }
 

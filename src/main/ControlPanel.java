@@ -144,6 +144,7 @@ public class ControlPanel extends JPanel {
                 case "Play Card":
                     Card card = player.getHand().get(cardPanel.cardIndex);
                     card.play(player);
+                    player.discardCard(card);
                     setPlayCardEnabled(false);
                     setEndTurnEnabled(true);
                     displayPanel.updateInfo();

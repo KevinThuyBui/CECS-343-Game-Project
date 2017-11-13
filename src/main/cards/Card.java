@@ -2,7 +2,6 @@ package main.cards;
 
 import main.Player;
 
-import javax.swing.*;
 import java.net.URL;
 
 public abstract class Card {

@@ -23,7 +23,7 @@ public class Card39 extends Card {
         }
         else
         {
-            thisPlayer.discardCard(new CardDialog().display(thisPlayer));
+            thisPlayer.discardCard(new CardDialog().display(thisPlayer, this));
             outcome = failedOutcomeString(thisPlayer.getName());
         }
     }

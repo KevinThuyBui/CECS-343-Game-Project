@@ -6,7 +6,7 @@ import main.CardDialog;
 
 public class Card14 extends Card {
 
-    public Card14(){
+    Card14(){
         cardName = "Math 123";
         location = "ECS 302 and 308";
         reward = "5 Quality Points";
@@ -23,7 +23,7 @@ public class Card14 extends Card {
         else
         {
             thisPlayer.offsetQuality(-3);
-            thisPlayer.discardCard(new CardDialog().display(thisPlayer));
+            thisPlayer.discardCard(new CardDialog().display(thisPlayer, this));
             outcome = failedOutcomeString(thisPlayer.getName());
         }
     }
