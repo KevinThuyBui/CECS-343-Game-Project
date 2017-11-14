@@ -2,6 +2,7 @@ package main.cards;
 
 import main.Player;
 import main.Room;
+import main.impl.ComputerPlayer;
 
 import java.net.URL;
 
@@ -32,9 +33,17 @@ public abstract class Card {
             }
         } else {
             player.offsetQuality(-2);
-            setFailOutcome(player, "2 Quality Points.");
+            if (!statisfiesRequirement(player)) {
+                penalty(player);
+                outcome += "\n" + player + " also loses an additional 2 Quality Points.";
+            }
+            else
+            {
+                setFailOutcome(player, "2 Quality Points.");
+            }
         }
     }
+
 
     public boolean statisfiesRequirement(Player p) {
         return p.getIntegrity() >= reqIntegrity

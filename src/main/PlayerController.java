@@ -1,5 +1,6 @@
 package main;
 
+import main.cards.Card;
 import main.impl.ComputerPlayer;
 import main.impl.DrawablePlayer;
 import main.impl.HumanPlayer;
@@ -90,6 +91,10 @@ class PlayerController {
         final Timer timer = new Timer(500, e -> {
             Room[] adjacentRooms = getCurrentPlayer().getRoom().getAdjacentRooms();
             getCurrentPlayer().setRoom(adjacentRooms[ThreadLocalRandom.current().nextInt(adjacentRooms.length)]);
+            getCurrentPlayer().drawCard();
+            Card firstCard = getCurrentPlayer().getHand().get(0);
+            firstCard.useOn(getCurrentPlayer());
+            controlPanel.getDisplayPanel().appendConsole(firstCard.getOutcome());
             nextTurn();
         });
         timer.setRepeats(false);

@@ -24,9 +24,13 @@ public class Card14 extends Card {
     @Override
     protected void penalty(Player p) {
         p.offsetQuality(-3);
-        Card discard = new CardDialog().display(p);
-        p.discardCard(discard);
-        setFailOutcome(p, "3 Quality Points and " + discard.getCardName() + ".");
+        if (!p.getHand().isEmpty())
+        {
+            Card discard = new CardDialog().display(p);
+            p.discardCard(discard);
+            setFailOutcome(p, "3 Quality Points and " + discard.getCardName() + ".");
+        }
+        setFailOutcome(p, "3 Quality Points");
     }
 
 }

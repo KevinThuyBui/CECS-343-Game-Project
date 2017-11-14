@@ -17,6 +17,11 @@ import java.util.List;
 public class ControlPanel extends JPanel {
 
     private final LeftPanel leftPanel;
+
+    public DisplayPanel getDisplayPanel() {
+        return displayPanel;
+    }
+
     private final DisplayPanel displayPanel;
     private final CardPanel cardPanel;
     private final Player player;
@@ -38,6 +43,7 @@ public class ControlPanel extends JPanel {
         add(displayPanel);
         add(Box.createHorizontalStrut(5));
     }
+
 
     public void setRooms(Room[] rooms) {
         leftPanel.setRooms(rooms);
@@ -193,15 +199,19 @@ public class ControlPanel extends JPanel {
             info.setText("This is the player info panel");
             info.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
             info.setRows(6);
+
             console = new JTextArea();
             console.setEditable(false);
             console.setFont(new Font("Courier New", Font.PLAIN, 14));
             console.setText("This is the event panel");
             console.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
             console.setRows(3);
+
+
+            JScrollPane scrollPane = new JScrollPane(console);
             add(info);
             add(Box.createVerticalStrut(10));
-            add(console);
+            add(scrollPane);
         }
 
         public void updateInfo() {
@@ -220,13 +230,6 @@ public class ControlPanel extends JPanel {
         }
 
         void appendConsole(String text) {
-            if (console.getLineCount() == 3) {
-                try {
-                    console.replaceRange("", 0, console.getLineEndOffset(0));
-                } catch (BadLocationException e) {
-                    e.printStackTrace();
-                }
-            }
             console.append("\n" + text);
         }
     }

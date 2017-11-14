@@ -1,6 +1,7 @@
 package main;
 
 import main.cards.Card;
+import main.impl.ComputerPlayer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -55,21 +56,27 @@ public class CardDialog extends JDialog {
         return selectedCard;
     }
 
+
     public Card display(Player user)
     {
-        ButtonGroup cardSelection = new ButtonGroup();
-        for (Card card : user.getHand())
+        if (user instanceof ComputerPlayer)
         {
-            CardButton cardButton = new CardButton(card);
-            buttonPanel.add(cardButton);
-            cardSelection.add(cardButton);
-            cardButton.addActionListener(new CardActionListener());
+            return user.getHand().get(0);
         }
+        else {
+            ButtonGroup cardSelection = new ButtonGroup();
+            for (Card card : user.getHand()) {
+                CardButton cardButton = new CardButton(card);
+                buttonPanel.add(cardButton);
+                cardSelection.add(cardButton);
+                cardButton.addActionListener(new CardActionListener());
+            }
 
-        pack();
-        setVisible(true);
+            pack();
+            setVisible(true);
 
-        return selectedCard;
+            return selectedCard;
+        }
     }
 
 
