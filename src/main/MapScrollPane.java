@@ -51,7 +51,7 @@ class MapScrollPane extends JScrollPane {
     }
 
 
-    public void initializePlayerTokens(PlayerController playerState) {
+    void initializePlayerTokens(PlayerController playerState) {
         Font playerFont = new Font("Setif", Font.BOLD, 20);
 
         Player[] players = playerState.getPlayers();
@@ -67,6 +67,7 @@ class MapScrollPane extends JScrollPane {
             playerLabel.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
             playerLabel.setOpaque(true);
             playerLabel.setBackground(new Color(0, 0, 0, 150));
+            playerLabel.setLocation(Room.ECS_308.getDrawPosition());
             mapLabel.add(playerLabel);
             jLabels[i] = playerLabel;
         }
