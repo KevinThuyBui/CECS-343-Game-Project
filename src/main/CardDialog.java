@@ -60,24 +60,20 @@ public class CardDialog extends JDialog {
 
     public Card display(Player user)
     {
-        if (user instanceof ComputerPlayer)
-        {
-            return user.getHand().get(0);
-        }
-        else {
-            ButtonGroup cardSelection = new ButtonGroup();
-            for (Card card : user.getHand()) {
-                CardButton cardButton = new CardButton(card);
-                buttonPanel.add(cardButton);
-                cardSelection.add(cardButton);
-                cardButton.addActionListener(new CardActionListener());
-            }
 
-            pack();
-            setVisible(true);
-
-            return selectedCard;
+        ButtonGroup cardSelection = new ButtonGroup();
+        for (Card card : user.getHand()) {
+            CardButton cardButton = new CardButton(card);
+            buttonPanel.add(cardButton);
+            cardSelection.add(cardButton);
+            cardButton.addActionListener(new CardActionListener());
         }
+
+        pack();
+        setVisible(true);
+
+        return selectedCard;
+
     }
 
 
