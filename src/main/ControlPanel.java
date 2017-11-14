@@ -2,11 +2,11 @@ package main;
 
 import main.cards.Card;
 import main.cards.Decks;
+import main.player.Player;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -154,6 +154,7 @@ public class ControlPanel extends JPanel {
                     setEndTurnEnabled(true);
                     displayPanel.updateInfo();
                     displayPanel.appendConsole(card.getOutcome());
+                    leftPanel.setRooms(player.getRoom().getAdjacentRooms());
                     cardPanel.setCardIndex(0);
                     break;
                 case "End Turn":

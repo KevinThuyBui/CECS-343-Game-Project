@@ -1,6 +1,5 @@
-package main.impl;
+package main.player;
 
-import main.Player;
 import main.Room;
 import main.cards.Card;
 
@@ -88,11 +87,6 @@ public abstract class PlayerDecorator implements Player {
     @Override
     public void discardCard(Card display) {
         player.discardCard(display);
-    }
-
-    @Override
-    public String chooseChip(boolean learning, boolean craft, boolean integrity) {
-        return player.chooseChip(learning, craft, integrity);
     }
 
     @Override

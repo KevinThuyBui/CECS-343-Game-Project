@@ -1,7 +1,6 @@
 package main.cards;
 
-import main.ChipDialog;
-import main.Player;
+import main.player.Player;
 import main.Room;
 
 public class Card32 extends Card {

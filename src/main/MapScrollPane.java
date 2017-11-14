@@ -1,5 +1,6 @@
 package main;
 
+import main.player.Player;
 import main.util.ScrollPaneMouseDragAdapter;
 
 import javax.imageio.ImageIO;

@@ -1,5 +1,6 @@
-package main;
+package main.player;
 
+import main.Room;
 import main.cards.Card;
 
 import java.awt.*;
@@ -36,6 +37,8 @@ public interface Player {
     void drawCard();
 
     void discardCard(Card display);
+
+    Card chooseDiscard();
 
     default String chooseChip() {
         return chooseChip(true, true, true);

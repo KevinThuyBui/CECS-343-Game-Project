@@ -1,7 +1,8 @@
 package main;
 
 import main.cards.Card;
-import main.impl.ComputerPlayer;
+import main.player.ComputerPlayer;
+import main.player.Player;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

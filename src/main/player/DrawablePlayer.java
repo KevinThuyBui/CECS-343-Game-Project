@@ -1,8 +1,7 @@
-package main.impl;
+package main.player;
 
-import main.cards.Card;
-import main.Player;
 import main.Room;
+import main.cards.Card;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,5 +42,15 @@ public class DrawablePlayer extends PlayerDecorator {
                 }
             }
         }).start();
+    }
+
+    @Override
+    public Card chooseDiscard() {
+        return player.chooseDiscard();
+    }
+
+    @Override
+    public String chooseChip(boolean learning, boolean craft, boolean integrity) {
+        return player.chooseChip(learning, craft, integrity);
     }
 }

@@ -1,12 +1,24 @@
-package main.impl;
+package main.player;
 
+import main.CardDialog;
 import main.ChipDialog;
-import main.Player;
+import main.cards.Card;
 
 public class HumanPlayer extends PlayerDecorator {
 
     public HumanPlayer(Player player) {
         super(player);
+    }
+
+    /**
+     * Selects or prompts for a selection. Once a card has been selected, it is discarded from this player's hand.
+     * @return the discarded card
+     */
+    @Override
+    public Card chooseDiscard() {
+        Card card = new CardDialog().display(this);
+        discardCard(card);
+        return card;
     }
 
     @Override

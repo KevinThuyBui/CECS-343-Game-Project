@@ -1,6 +1,6 @@
 package main.cards;
 
-import main.Player;
+import main.player.Player;
 import main.Room;
 
 public class Card13 extends Card {

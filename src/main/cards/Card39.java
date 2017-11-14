@@ -1,8 +1,7 @@
 package main.cards;
 
-import main.CardDialog;
-import main.Player;
 import main.Room;
+import main.player.Player;
 
 public class Card39 extends Card {
     Card39() {
@@ -22,8 +21,7 @@ public class Card39 extends Card {
 
     @Override
     protected void penalty(Player p) {
-        Card discard = new CardDialog().display(p);
-        p.discardCard(discard);
+        Card discard = p.chooseDiscard();
         setFailOutcome(p, discard + ".\nGame Card \"Goodbye, Professor\" has been dropped in the Room of Retirement");
     }
 }

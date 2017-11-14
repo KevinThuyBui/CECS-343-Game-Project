@@ -1,10 +1,7 @@
 package main;
 
 import main.cards.Card;
-import main.impl.ComputerPlayer;
-import main.impl.DrawablePlayer;
-import main.impl.HumanPlayer;
-import main.impl.PlayerImpl;
+import main.player.*;
 
 import javax.swing.*;
 import javax.swing.Timer;
@@ -64,41 +61,59 @@ class PlayerController {
         }
     }
 
-    private void randomizePlayers(Player[] players)
-    {
+    private void randomizePlayers(Player[] players) {
         final List<Integer> randomList = Arrays.asList(0, 1, 2);
         Collections.shuffle(randomList);
         players[randomList.get(0)] = new PlayerImpl("Jack", Room.ECS_308, 2, 2, 2, 0);
         players[randomList.get(1)] = new PlayerImpl("Lemon", Room.ECS_308, 3, 1, 2, 0);
         players[randomList.get(2)] = new PlayerImpl("Romulus", Room.ECS_308, 0, 3, 3, 0);
 
-        for (Player player : players)
-        {
+        for (Player player : players) {
             initialDraw(player);
         }
     }
 
     //Each player starts with 5 cards
-    private void initialDraw(Player player)
-    {
-        for (int i = 0; i < 5; i++ )
+    private void initialDraw(Player player) {
+        for (int i = 0; i < 5; i++)
             player.drawCard();
     }
 
 
     private void beginComputerTurn() {
         controlPanel.setRooms(new Room[0]);
+        Player computer = getCurrentPlayer();
         final Timer timer = new Timer(500, e -> {
-            Room[] adjacentRooms = getCurrentPlayer().getRoom().getAdjacentRooms();
-            getCurrentPlayer().setRoom(adjacentRooms[ThreadLocalRandom.current().nextInt(adjacentRooms.length)]);
-            getCurrentPlayer().drawCard();
-            Card firstCard = getCurrentPlayer().getHand().get(0);
-            firstCard.useOn(getCurrentPlayer());
-            controlPanel.getDisplayPanel().appendConsole(firstCard.getOutcome());
+            computer.drawCard();
+            boolean playedCard = false;
+            for (int i = 0; i < 3; i++) {
+                if (!playedCard)
+                    playedCard = playBestCard(computer);
+                Room[] adjacentRooms = computer.getRoom().getAdjacentRooms();
+                computer.setRoom(adjacentRooms[ThreadLocalRandom.current().nextInt(adjacentRooms.length)]);
+            }
+            if (!playedCard) {
+                List<Card> hand = computer.getHand();
+                Card card = hand.get(ThreadLocalRandom.current().nextInt(hand.size()));
+                card.useOn(computer);
+                controlPanel.getDisplayPanel().appendConsole(card.getOutcome());
+            }
             nextTurn();
         });
         timer.setRepeats(false);
         timer.start();
+    }
+
+    private boolean playBestCard(Player computer) {
+        List<Card> hand = computer.getHand();
+        for (Card card : hand) {
+            if (card.canPlay(computer.getRoom()) && card.statisfiesRequirement(computer)) {
+                card.useOn(computer);
+                controlPanel.getDisplayPanel().appendConsole(card.getOutcome());
+                return true;
+            }
+        }
+        return false;
     }
 
 

@@ -1,9 +1,8 @@
 
 package main.cards;
 
-import main.Player;
+import main.player.Player;
 import main.Room;
-import main.ChipDialog;
 
 public class Card1 extends Card {
 

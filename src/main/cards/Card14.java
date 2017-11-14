@@ -1,8 +1,7 @@
 package main.cards;
 
-import main.Player;
 import main.Room;
-import main.CardDialog;
+import main.player.Player;
 
 public class Card14 extends Card {
 
@@ -26,8 +25,7 @@ public class Card14 extends Card {
         p.offsetQuality(-3);
         if (!p.getHand().isEmpty())
         {
-            Card discard = new CardDialog().display(p);
-            p.discardCard(discard);
+            Card discard = p.chooseDiscard();
             setFailOutcome(p, "3 Quality Points and " + discard.getCardName() + ".");
         }
         setFailOutcome(p, "3 Quality Points");

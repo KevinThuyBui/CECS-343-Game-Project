@@ -1,4 +1,4 @@
-package main.impl;/*    Copyright 2017 Ton Ly
+package main.player;/*    Copyright 2017 Ton Ly
  
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@ package main.impl;/*    Copyright 2017 Ton Ly
 
 import main.cards.Card;
 import main.cards.Decks;
-import main.Player;
 import main.Room;
 
 import java.awt.*;
@@ -109,6 +108,11 @@ public class PlayerImpl implements Player {
     public void discardCard(Card card) {
         if (hand.remove(card))
             Decks.getInstance().addToDiscard(card);
+    }
+
+    @Override
+    public Card chooseDiscard() {
+        return null;
     }
 
     @Override

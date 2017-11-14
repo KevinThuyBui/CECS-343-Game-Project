@@ -1,8 +1,7 @@
 package main.cards;
 
-import main.Player;
 import main.Room;
-import main.CardDialog;
+import main.player.Player;
 
 public class Card9 extends Card {
 
@@ -21,8 +20,7 @@ public class Card9 extends Card {
     protected void success(Player p) {
         p.offsetLearning(1);
         if (!p.getHand().isEmpty()) {
-            Card card = new CardDialog().display(p);
-            p.discardCard(card);
+            Card card = p.chooseDiscard();
             p.offsetLearning(1);
             setSuccessOutcome(p, "2 Learning Chips and discard " + card.getCardName() + ".");
         } else {

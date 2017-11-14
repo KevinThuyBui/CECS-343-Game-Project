@@ -1,9 +1,7 @@
 package main.cards;
 
-import main.CardDialog;
-import main.ChipDialog;
-import main.Player;
 import main.Room;
+import main.player.Player;
 
 public class Card25 extends Card {
 
@@ -26,8 +24,7 @@ public class Card25 extends Card {
 
     @Override
     protected void penalty(Player p) {
-        Card discard = new CardDialog().display(p);
-        p.discardCard(discard);
+        Card discard = p.chooseDiscard();
         setFailOutcome(p, discard + ".");
     }
 }
