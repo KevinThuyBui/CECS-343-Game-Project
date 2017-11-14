@@ -17,10 +17,10 @@ class MapScrollPane extends JScrollPane {
         //Read and store CSULBMap5_1200x1437.png as BufferedImage
         final BufferedImage mapImage = readMapFromFile();
         //If image is stored in BufferedImage create a JLabel to be stored in main.MapScrollPane View
-
         mapLabel = createJLabel(mapImage);
-
-        setViewportView(mapLabel);
+        JPanel container = new JPanel();
+        container.add(mapLabel);
+        setViewportView(container);
 
 
         setSize(1000, 1000);
@@ -51,7 +51,7 @@ class MapScrollPane extends JScrollPane {
     }
 
 
-    void initializePlayerTokens(PlayerController playerState) {
+    public void initializePlayerTokens(PlayerController playerState) {
         Font playerFont = new Font("Setif", Font.BOLD, 20);
 
         Player[] players = playerState.getPlayers();
